@@ -1,8 +1,8 @@
 import os
 import base64
 import json
+import random
 import numpy as np
-from utils.openai_utils import analyze_plant_disease
 
 # Mock models for demonstration
 # In a production environment, these would be trained ML models
@@ -119,8 +119,43 @@ def detect_disease(image_base64):
         tuple: (disease_name, disease_cause, treatment)
     """
     try:
-        # Use OpenAI for disease detection
-        disease_name, cause, treatment = analyze_plant_disease(image_base64)
-        return disease_name, cause, treatment
+        # In a real application, this would use a trained ML model
+        # Here we're using a simplified demo version
+        import random
+        
+        # Common plant diseases for demonstration
+        diseases = [
+            {
+                "name": "Late Blight",
+                "cause": "Caused by the fungus Phytophthora infestans. Spreads rapidly in cool, wet weather with temperatures between 10-24°C.",
+                "treatment": "Use fungicides containing copper or chlorothalonil. Remove and destroy infected plants. Ensure proper spacing for air circulation. Plant resistant varieties."
+            },
+            {
+                "name": "Powdery Mildew",
+                "cause": "Caused by various fungi species. Thrives in humid conditions with moderate temperatures. Poor air circulation contributes to its spread.",
+                "treatment": "Apply sulfur-based fungicides or neem oil. Increase plant spacing for better air circulation. Remove and destroy affected leaves. Use resistant varieties when possible."
+            },
+            {
+                "name": "Early Blight",
+                "cause": "Caused by the fungus Alternaria solani. Favored by warm, humid conditions and extended periods of leaf wetness.",
+                "treatment": "Apply copper-based fungicides. Practice crop rotation. Remove and destroy infected plants. Maintain proper plant spacing and avoid overhead watering."
+            },
+            {
+                "name": "Bacterial Leaf Spot",
+                "cause": "Caused by various bacteria species. Spread through water splashing, contaminated tools, and infected seeds. Common in warm, wet conditions.",
+                "treatment": "Apply copper-based bactericides. Avoid overhead irrigation. Remove infected plants. Sanitize garden tools. Use disease-free seeds or transplants."
+            },
+            {
+                "name": "Leaf Rust",
+                "cause": "Caused by fungi in the Puccinia genus. Spores spread easily by wind. Development is favored by high humidity and moderate temperatures.",
+                "treatment": "Apply fungicides with active ingredients like tebuconazole or propiconazole. Remove infected plant material. Increase air circulation. Plant resistant varieties."
+            }
+        ]
+        
+        # Simulate disease detection with a random selection
+        # In a real app, this would analyze the image using computer vision
+        disease = random.choice(diseases)
+        return disease["name"], disease["cause"], disease["treatment"]
+        
     except Exception as e:
-        return f"Error: {str(e)}", "", ""
+        return f"Error in disease detection: {str(e)}", "", ""
