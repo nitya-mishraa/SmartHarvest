@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSaarthi - AI-Driven Smart Farming Assistant</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Page-specific CSS -->
+    {% block additional_css %}{% endblock %}
+</head>
+<body class="light-mode">
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index') }}">
+                    <span class="text-success">Agri</span><span class="text-primary">Saarthi</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('index') }}">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('crop_recommendation') }}">
+                                <i class="fas fa-seedling"></i> Crop Recommendation
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('fertilizer_recommendation') }}">
+                                <i class="fas fa-flask"></i> Fertilizer Recommendation
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('disease_detection') }}">
+                                <i class="fas fa-bug"></i> Disease Detection
+                            </a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('farm_diary') }}">
+                                <i class="fas fa-book"></i> FarmBook
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('task_planner') }}">
+                                <i class="fas fa-calendar-alt"></i> KrishiCalendar
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('knowledge_hub') }}">
+                                <i class="fas fa-graduation-cap"></i> Knowledge Hub
+                            </a>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav">
+                        <!-- Language selector dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-language"></i> Language
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                <li>
+                                    <form action="{{ url_for('set_language') }}" method="post">
+                                        <button type="submit" name="language" value="en" class="dropdown-item">English</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{{ url_for('set_language') }}" method="post">
+                                        <button type="submit" name="language" value="hi" class="dropdown-item">हिंदी (Hindi)</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{{ url_for('set_language') }}" method="post">
+                                        <button type="submit" name="language" value="ta" class="dropdown-item">தமிழ் (Tamil)</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{{ url_for('set_language') }}" method="post">
+                                        <button type="submit" name="language" value="te" class="dropdown-item">తెలుగు (Telugu)</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{{ url_for('set_language') }}" method="post">
+                                        <button type="submit" name="language" value="bn" class="dropdown-item">বাংলা (Bengali)</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form action="{{ url_for('set_language') }}" method="post">
+                                        <button type="submit" name="language" value="mr" class="dropdown-item">मराठी (Marathi)</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- Theme toggle -->
+                        <li class="nav-item">
+                            <button class="nav-link btn theme-toggle" id="theme-toggle">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                        
+                        <!-- Authentication links -->
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('profile') }}">
+                                <i class="fas fa-user"></i> {{ current_user.username }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login') }}">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('register') }}">
+                                <i class="fas fa-user-plus"></i> Register
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Flash Messages -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <ul class="mb-0">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5><span class="text-success">Agri</span><span class="text-primary">Saarthi</span></h5>
+                    <p>
+                        An AI-Driven Smart Farming Assistant helping Indian farmers make better decisions
+                        with advanced technology and data-driven insights.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>Features</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ url_for('crop_recommendation') }}" class="text-decoration-none">Crop Recommendation</a></li>
+                        <li><a href="{{ url_for('fertilizer_recommendation') }}" class="text-decoration-none">Fertilizer Suggestion</a></li>
+                        <li><a href="{{ url_for('disease_detection') }}" class="text-decoration-none">Disease Detection</a></li>
+                        <li><a href="{{ url_for('farm_diary') }}" class="text-decoration-none">FarmBook</a></li>
+                        <li><a href="{{ url_for('task_planner') }}" class="text-decoration-none">KrishiCalendar</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ url_for('knowledge_hub') }}" class="text-decoration-none">Knowledge Hub</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2023 AgriSaarthi - Empowering Indian Farmers
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- Page-specific JavaScript -->
+    {% block additional_js %}{% endblock %}
+</body>
+</html>

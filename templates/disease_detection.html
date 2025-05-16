@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block additional_css %}
+<style>
+    .disease-result {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        margin-top: 20px;
+        border-left: 5px solid #dc3545;
+    }
+    
+    .upload-area {
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+    
+    .upload-area:hover {
+        border-color: #28a745;
+    }
+    
+    .uploaded-image {
+        max-height: 300px;
+        object-fit: contain;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h3 class="mb-0"><i class="fas fa-bug me-2"></i>Plant Disease Detection</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="lead">Upload an image of a plant leaf to identify diseases, understand their causes, and get treatment recommendations.</p>
+                        
+                        <div class="alert alert-info" role="alert">
+                            <i class="fas fa-info-circle me-2"></i>For best results, upload a clear image in good lighting, focusing on the affected area of the plant.
+                        </div>
+                        
+                        <form method="POST" action="{{ url_for('disease_detection') }}" enctype="multipart/form-data" id="diseaseDetectionForm">
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                <h5>Drag & Drop or Click to Upload</h5>
+                                <p class="text-muted">Supported formats: JPG, JPEG, PNG</p>
+                                <input type="file" id="plant_image" name="plant_image" accept="image/*" required class="d-none">
+                            </div>
+                            
+                            <div id="imagePreviewContainer" class="text-center mb-3 d-none">
+                                <img id="imagePreview" class="img-fluid uploaded-image rounded" alt="Image Preview">
+                                <button type="button" class="btn btn-sm btn-outline-danger mt-2" id="removeImage">
+                                    <i class="fas fa-times me-1"></i>Remove
+                                </button>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-danger" id="detectButton" disabled>
+                                    <i class="fas fa-search me-2"></i>Detect Disease
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        {% if result %}
+                        <div class="disease-result">
+                            <h4 class="text-danger mb-3">
+                                <i class="fas fa-virus me-2"></i>Disease Detection Results
+                            </h4>
+                            
+                            <div class="mb-3">
+                                <img src="data:image/jpeg;base64,{{ image }}" class="img-fluid rounded" alt="Uploaded Plant Image">
+                            </div>
+                            
+                            <h5>Disease Identified: {{ result.disease_name }}</h5>
+                            
+                            <div class="mt-3">
+                                <h6><i class="fas fa-info-circle me-2"></i>Cause & Symptoms:</h6>
+                                <p>{{ result.disease_cause }}</p>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <h6><i class="fas fa-first-aid me-2"></i>Treatment & Management:</h6>
+                                <p>{{ result.disease_cure }}</p>
+                            </div>
+                            
+                            {% if current_user.is_authenticated %}
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                                <a href="{{ url_for('task_planner') }}" class="btn btn-outline-info">
+                                    <i class="fas fa-calendar-plus me-2"></i>Plan Treatment Task
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% elif error %}
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>{{ error }}
+                        </div>
+                        {% else %}
+                        <div class="text-center mb-4">
+                            <img src="https://pixabay.com/get/g986a25cd567238cc921ee225a2ac7cf3748f4d86ffdd67ace4f286f73a4d90a1545103f6884132e584da2825c975b0be281e40e8a6f5f13e1ccafa871cff9f89_1280.jpg" alt="Plant Disease" class="img-fluid rounded">
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">How It Works</h5>
+                                <ol>
+                                    <li>Upload a clear photo of the affected plant part</li>
+                                    <li>Our AI analyzes the image to identify the disease</li>
+                                    <li>Receive a diagnosis with the disease name</li>
+                                    <li>Get information on causes, symptoms, and treatment</li>
+                                </ol>
+                                <p>Our model is trained on thousands of plant disease images for accurate detection.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Common Plant Diseases</h5>
+                                <ul>
+                                    <li>Early Blight in Tomato</li>
+                                    <li>Bacterial Leaf Blight in Rice</li>
+                                    <li>Powdery Mildew in Wheat</li>
+                                    <li>Yellow Leaf Curl Virus in Chili</li>
+                                    <li>Blast Disease in Rice</li>
+                                    <li>Rust in Wheat</li>
+                                </ul>
+                                <p>Early detection is crucial for effective disease management.</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+<script src="{{ url_for('static', filename='js/disease_detection.js') }}"></script>
+{% endblock %}

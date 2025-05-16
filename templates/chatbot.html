@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="mb-0" id="chatHeader"><i class="fas fa-robot me-2"></i>AI Farming Assistant</h3>
+                <div class="d-flex">
+                    <div class="dropdown me-2">
+                        <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="languageDropdownChat" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-language me-1"></i> Language
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdownChat">
+                            <li><button class="dropdown-item language-option" data-lang="en">English</button></li>
+                            <li><button class="dropdown-item language-option" data-lang="hi">हिंदी (Hindi)</button></li>
+                            <li><button class="dropdown-item language-option" data-lang="ta">தமிழ் (Tamil)</button></li>
+                            <li><button class="dropdown-item language-option" data-lang="te">తెలుగు (Telugu)</button></li>
+                            <li><button class="dropdown-item language-option" data-lang="bn">বাংলা (Bengali)</button></li>
+                            <li><button class="dropdown-item language-option" data-lang="mr">मराठी (Marathi)</button></li>
+                        </ul>
+                    </div>
+                    <button id="clearChat" class="btn btn-sm btn-light">
+                        <i class="fas fa-trash me-1"></i> <span id="clearButton">Clear Chat</span>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Chat messages will be added here dynamically -->
+                        <div class="chat-message system-message">
+                            <div class="message-bubble">
+                                <p><i class="fas fa-info-circle me-2"></i>Ask any farming-related questions about crops, soil, fertilizers, pests, weather, government schemes, or farming techniques.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <form id="chatForm" class="d-flex">
+                            <input type="text" id="userInput" class="form-control" placeholder="Type your farming question here..." aria-label="Type your message">
+                            <button type="submit" class="btn btn-primary ms-2">
+                                <i class="fas fa-paper-plane me-1"></i> <span id="sendButton">Send</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h4 class="mb-0"><i class="fas fa-info-circle me-2"></i>Using the AI Farming Assistant</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Example Questions You Can Ask:</h5>
+                        <div class="list-group mb-4">
+                            <button class="list-group-item list-group-item-action example-question">
+                                <i class="fas fa-seedling text-success me-2"></i> What crops are best for sandy soil with low rainfall?
+                            </button>
+                            <button class="list-group-item list-group-item-action example-question">
+                                <i class="fas fa-bug text-danger me-2"></i> How do I identify and treat powdery mildew in my wheat crop?
+                            </button>
+                            <button class="list-group-item list-group-item-action example-question">
+                                <i class="fas fa-tint text-info me-2"></i> What are some water conservation techniques for paddy fields?
+                            </button>
+                            <button class="list-group-item list-group-item-action example-question">
+                                <i class="fas fa-rupee-sign text-primary me-2"></i> What government schemes are available for small farmers in India?
+                            </button>
+                            <button class="list-group-item list-group-item-action example-question">
+                                <i class="fas fa-leaf text-success me-2"></i> How can I start organic farming on my small farm?
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h5>Features:</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="fas fa-language fa-lg text-primary me-3"></i>
+                                <div>
+                                    <strong>Multilingual Support</strong>
+                                    <p class="mb-0 small">Get answers in your preferred language. Select from the language dropdown.</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="fas fa-book fa-lg text-success me-3"></i>
+                                <div>
+                                    <strong>Comprehensive Knowledge</strong>
+                                    <p class="mb-0 small">Access information on crops, pests, weather patterns, and more.</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="fas fa-history fa-lg text-warning me-3"></i>
+                                <div>
+                                    <strong>Chat History</strong>
+                                    <p class="mb-0 small">Your conversation is saved locally and will be available when you return.</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="fas fa-sync-alt fa-lg text-info me-3"></i>
+                                <div>
+                                    <strong>Always Updated</strong>
+                                    <p class="mb-0 small">The AI assistant keeps its knowledge current with the latest agricultural practices.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light">
+                <div class="alert alert-info mb-0">
+                    <i class="fas fa-info-circle me-2"></i> This AI assistant provides general farming information. For specific advice tailored to your farm, consider consulting with a local agricultural extension officer.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle example question clicks
+        const exampleQuestions = document.querySelectorAll('.example-question');
+        
+        exampleQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                // Get the question text without the icon
+                const questionText = this.innerText.trim();
+                
+                // Set the question in the input field
+                const userInput = document.getElementById('userInput');
+                if (userInput) {
+                    userInput.value = questionText;
+                    userInput.focus();
+                }
+            });
+        });
+        
+        // Handle language selection from dropdown
+        const languageOptions = document.querySelectorAll('.language-option');
+        
+        languageOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const langCode = this.getAttribute('data-lang');
+                
+                // Update the current language
+                if (typeof currentLanguage !== 'undefined') {
+                    currentLanguage = langCode;
+                    localStorage.setItem('chatLanguage', langCode);
+                    
+                    // Update UI elements
+                    translateChatInterface();
+                    
+                    // Add a system message about language change
+                    const languageName = this.innerText.trim();
+                    addSystemMessage(`Language changed to ${languageName}`);
+                }
+            });
+        });
+        
+        // Initialize language from localStorage if available
+        const savedLanguage = localStorage.getItem('chatLanguage');
+        if (savedLanguage) {
+            if (typeof currentLanguage !== 'undefined') {
+                currentLanguage = savedLanguage;
+                translateChatInterface();
+            }
+        }
+    });
+</script>
+{% endblock %}

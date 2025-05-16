@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <!-- User Profile Card -->
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-user-circle me-2"></i>My Profile</h4>
+            </div>
+            <div class="card-body text-center">
+                <div class="profile-avatar mb-3">
+                    <i class="fas fa-user-circle fa-5x text-secondary"></i>
+                </div>
+                <h3>{{ current_user.username }}</h3>
+                <p class="text-muted">{{ current_user.email }}</p>
+                <p><small>Member since: {{ current_user.created_at.strftime('%d %B %Y') }}</small></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Summary -->
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Your Farming Activity</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="activity-icon mb-2">
+                                <i class="fas fa-seedling fa-2x text-success"></i>
+                            </div>
+                            <h5>{{ current_user.crop_recommendations|length }}</h5>
+                            <p class="text-muted">Crop Recommendations</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="activity-icon mb-2">
+                                <i class="fas fa-flask fa-2x text-primary"></i>
+                            </div>
+                            <h5>{{ current_user.fertilizer_recommendations|length }}</h5>
+                            <p class="text-muted">Fertilizer Suggestions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="activity-icon mb-2">
+                                <i class="fas fa-book fa-2x text-warning"></i>
+                            </div>
+                            <h5>{{ current_user.farm_diary_entries|length }}</h5>
+                            <p class="text-muted">Farm Diary Entries</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="activity-icon mb-2">
+                                <i class="fas fa-tasks fa-2x text-info"></i>
+                            </div>
+                            <h5>{{ current_user.tasks|length }}</h5>
+                            <p class="text-muted">Planned Tasks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="fas fa-history me-2"></i>Recent Activity</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% set recent_entries = current_user.farm_diary_entries|sort(attribute='created_at', reverse=True)|slice(0, 3) %}
+                    {% set recent_tasks = current_user.tasks|sort(attribute='created_at', reverse=True)|slice(0, 3) %}
+                    {% set recent_crop_recs = current_user.crop_recommendations|sort(attribute='created_at', reverse=True)|slice(0, 3) %}
+                    
+                    {% if recent_entries %}
+                        {% for entry in recent_entries %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="fas fa-book text-warning me-2"></i>
+                                    <span>Added {{ entry.entry_type }} entry for {{ entry.crop }}</span>
+                                </div>
+                                <span class="badge bg-light text-dark">{{ entry.created_at.strftime('%d %b %Y') }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    {% if recent_tasks %}
+                        {% for task in recent_tasks %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="fas fa-calendar-check text-info me-2"></i>
+                                    <span>Planned {{ task.task_name }} for {{ task.task_date.strftime('%d %b %Y') }}</span>
+                                </div>
+                                <span class="badge bg-light text-dark">{{ task.created_at.strftime('%d %b %Y') }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    {% if recent_crop_recs %}
+                        {% for rec in recent_crop_recs %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="fas fa-seedling text-success me-2"></i>
+                                    <span>Got recommendation for {{ rec.recommended_crop }}</span>
+                                </div>
+                                <span class="badge bg-light text-dark">{{ rec.created_at.strftime('%d %b %Y') }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    {% if not recent_entries and not recent_tasks and not recent_crop_recs %}
+                    <li class="list-group-item text-center">
+                        <p>No recent activity found. Start using AgriSaarthi features!</p>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="card-footer">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <a href="{{ url_for('farm_diary') }}" class="btn btn-outline-warning">
+                        <i class="fas fa-book me-2"></i>View Farm Diary
+                    </a>
+                    <a href="{{ url_for('task_planner') }}" class="btn btn-outline-info">
+                        <i class="fas fa-calendar me-2"></i>View Task Calendar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

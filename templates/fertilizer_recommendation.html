@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block additional_css %}
+<style>
+    .recommended-fertilizer {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        margin-top: 20px;
+        border-left: 5px solid #007bff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0"><i class="fas fa-flask me-2"></i>Fertilizer Recommendation System</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="lead">Enter your soil nutrient levels and crop type to receive recommendations for the most appropriate fertilizers.</p>
+                        
+                        <div class="alert alert-info" role="alert">
+                            <i class="fas fa-info-circle me-2"></i>Different crops have varying nutrient requirements. For optimal results, enter accurate soil test data and select the specific crop you plan to grow.
+                        </div>
+                        
+                        <form method="POST" action="{{ url_for('fertilizer_recommendation') }}" id="fertilizerRecommendationForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nitrogen" class="form-label">Nitrogen (N) content in soil (mg/kg)</label>
+                                    <input type="number" class="form-control" id="nitrogen" name="nitrogen" required min="0" max="500" step="0.01" placeholder="e.g., 40">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="phosphorus" class="form-label">Phosphorus (P) content in soil (mg/kg)</label>
+                                    <input type="number" class="form-control" id="phosphorus" name="phosphorus" required min="0" max="500" step="0.01" placeholder="e.g., 35">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="potassium" class="form-label">Potassium (K) content in soil (mg/kg)</label>
+                                    <input type="number" class="form-control" id="potassium" name="potassium" required min="0" max="500" step="0.01" placeholder="e.g., 45">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="crop_type" class="form-label">Crop Type</label>
+                                    <select class="form-select" id="crop_type" name="crop_type" required>
+                                        <option value="" selected disabled>Select crop</option>
+                                        <option value="Rice">Rice</option>
+                                        <option value="Wheat">Wheat</option>
+                                        <option value="Maize">Maize</option>
+                                        <option value="Chickpea">Chickpea</option>
+                                        <option value="Lentil">Lentil</option>
+                                        <option value="Cotton">Cotton</option>
+                                        <option value="Sugarcane">Sugarcane</option>
+                                        <option value="Tea">Tea</option>
+                                        <option value="Coffee">Coffee</option>
+                                        <option value="Potato">Potato</option>
+                                        <option value="Tomato">Tomato</option>
+                                        <option value="Onion">Onion</option>
+                                        <option value="Mustard">Mustard</option>
+                                        <option value="Soybean">Soybean</option>
+                                        <option value="Groundnut">Groundnut</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-12 mt-4">
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-search me-2"></i>Get Fertilizer Recommendation
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="text-center mb-4">
+                            <img src="https://pixabay.com/get/g0fc7a2007bf1760c819d09779ae36d2b5484b410b09959a66a794cd9306de342893ed3c59887e889a134d89ce748bd1263507d5dca1bee94f87c8f3e5b775da4_1280.jpg" alt="Fertilizer Application" class="img-fluid rounded">
+                        </div>
+                        
+                        {% if prediction %}
+                        <div class="recommended-fertilizer">
+                            <h4 class="text-primary mb-3">
+                                <i class="fas fa-vial me-2"></i>Fertilizer Recommendation
+                            </h4>
+                            
+                            <p>{{ prediction }}</p>
+                            
+                            <h5 class="mt-4">Application Guidelines</h5>
+                            <ul>
+                                <li>Always follow the manufacturer's recommended application rates</li>
+                                <li>Apply fertilizers during the appropriate growth stage</li>
+                                <li>Consider splitting applications over the growing season</li>
+                                <li>Avoid applying fertilizers before heavy rainfall to prevent runoff</li>
+                            </ul>
+                            
+                            <div class="alert alert-warning mt-3" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i>Always wear protective equipment when handling fertilizers and follow safe storage practices.
+                            </div>
+                            
+                            {% if current_user.is_authenticated %}
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                                <a href="{{ url_for('farm_diary') }}" class="btn btn-outline-warning">
+                                    <i class="fas fa-book me-2"></i>Record in Farm Diary
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% elif error %}
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>{{ error }}
+                        </div>
+                        {% else %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">How It Works</h5>
+                                <ol>
+                                    <li>Enter your soil's nutrient levels (N, P, K)</li>
+                                    <li>Select the specific crop you plan to grow</li>
+                                    <li>Our AI model analyzes the data</li>
+                                    <li>Get recommendations for suitable fertilizers and application guidance</li>
+                                </ol>
+                                <p>Our recommendations consider both nutrient deficiencies and crop-specific requirements.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Understanding NPK Values</h5>
+                                <ul>
+                                    <li>N (Nitrogen): Promotes leaf growth and green color</li>
+                                    <li>P (Phosphorus): Essential for root development and flowering</li>
+                                    <li>K (Potassium): Improves overall plant health and disease resistance</li>
+                                </ul>
+                                <p>Balanced fertilization is key to sustainable farming and optimal crop yields.</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+<script src="{{ url_for('static', filename='js/fertilizer_recommendation.js') }}"></script>
+{% endblock %}

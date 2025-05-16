@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block additional_css %}
+<style>
+    .entry-card {
+        margin-bottom: 15px;
+        border-left: 5px solid #ffc107;
+    }
+    
+    .entry-card.sowing {
+        border-left-color: #28a745;
+    }
+    
+    .entry-card.fertilizer {
+        border-left-color: #007bff;
+    }
+    
+    .entry-card.irrigation {
+        border-left-color: #17a2b8;
+    }
+    
+    .entry-card.harvest {
+        border-left-color: #dc3545;
+    }
+    
+    .entry-card.expense {
+        border-left-color: #6c757d;
+    }
+    
+    .entry-card.income {
+        border-left-color: #28a745;
+    }
+    
+    .summary-card {
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .summary-card.income {
+        background-color: rgba(40, 167, 69, 0.1);
+    }
+    
+    .summary-card.expense {
+        background-color: rgba(108, 117, 125, 0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                <h3 class="mb-0"><i class="fas fa-book me-2"></i>FarmBook - Digital Farm Diary</h3>
+                <a href="{{ url_for('farm_diary_export') }}" class="btn btn-sm btn-outline-dark">
+                    <i class="fas fa-download me-2"></i>Export to CSV
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4 class="mb-3">Add New Entry</h4>
+                        
+                        <form method="POST" action="{{ url_for('farm_diary') }}" id="farmDiaryForm">
+                            <div class="mb-3">
+                                <label for="entry_type" class="form-label">Entry Type</label>
+                                <select class="form-select" id="entry_type" name="entry_type" required>
+                                    <option value="" selected disabled>Select entry type</option>
+                                    <option value="sowing">Sowing</option>
+                                    <option value="fertilizer">Fertilizer Application</option>
+                                    <option value="irrigation">Irrigation</option>
+                                    <option value="harvest">Harvest</option>
+                                    <option value="expense">Expense</option>
+                                    <option value="income">Income</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="crop" class="form-label">Crop</label>
+                                <input type="text" class="form-control" id="crop" name="crop" placeholder="e.g., Wheat, Rice, etc.">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="details" class="form-label">Details</label>
+                                <textarea class="form-control" id="details" name="details" rows="3" placeholder="Add detailed information"></textarea>
+                            </div>
+                            
+                            <div class="mb-3" id="amountField">
+                                <label for="amount" class="form-label">Amount (₹)</label>
+                                <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter amount in Rupees" step="0.01">
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fas fa-plus me-2"></i>Add Entry
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="col-lg-8">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="mb-0">Your Farm Diary</h4>
+                            
+                            <!-- Summary Cards -->
+                            <div class="row w-100 mt-3">
+                                <div class="col-md-6">
+                                    <div class="summary-card income">
+                                        <h5><i class="fas fa-money-bill-wave me-2"></i>Total Income</h5>
+                                        <h3 class="text-success">₹ {{ entries|selectattr('entry_type', 'equalto', 'income')|sum(attribute='amount')|round(2) }}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="summary-card expense">
+                                        <h5><i class="fas fa-file-invoice me-2"></i>Total Expense</h5>
+                                        <h3 class="text-secondary">₹ {{ entries|selectattr('entry_type', 'equalto', 'expense')|sum(attribute='amount')|round(2) }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Filter options -->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="entrySearch" placeholder="Search entries...">
+                                <select class="form-select" id="entryTypeFilter" style="max-width: 200px;">
+                                    <option value="all">All Types</option>
+                                    <option value="sowing">Sowing</option>
+                                    <option value="fertilizer">Fertilizer</option>
+                                    <option value="irrigation">Irrigation</option>
+                                    <option value="harvest">Harvest</option>
+                                    <option value="expense">Expense</option>
+                                    <option value="income">Income</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Entry Cards -->
+                        <div id="entriesList">
+                            {% if entries %}
+                                {% for entry in entries %}
+                                <div class="card entry-card {{ entry.entry_type }}">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <h5 class="card-title">
+                                                    {% if entry.entry_type == 'sowing' %}
+                                                    <i class="fas fa-seedling me-2 text-success"></i>
+                                                    {% elif entry.entry_type == 'fertilizer' %}
+                                                    <i class="fas fa-flask me-2 text-primary"></i>
+                                                    {% elif entry.entry_type == 'irrigation' %}
+                                                    <i class="fas fa-tint me-2 text-info"></i>
+                                                    {% elif entry.entry_type == 'harvest' %}
+                                                    <i class="fas fa-leaf me-2 text-danger"></i>
+                                                    {% elif entry.entry_type == 'expense' %}
+                                                    <i class="fas fa-file-invoice-dollar me-2 text-secondary"></i>
+                                                    {% elif entry.entry_type == 'income' %}
+                                                    <i class="fas fa-money-bill-wave me-2 text-success"></i>
+                                                    {% endif %}
+                                                    {{ entry.entry_type|capitalize }}
+                                                    {% if entry.entry_type in ['expense', 'income'] %}
+                                                    <span class="ms-2">₹ {{ entry.amount }}</span>
+                                                    {% endif %}
+                                                </h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ entry.date.strftime('%d %B, %Y') }}</h6>
+                                                {% if entry.crop %}
+                                                <p class="mb-1"><strong>Crop:</strong> {{ entry.crop }}</p>
+                                                {% endif %}
+                                                {% if entry.details %}
+                                                <p class="card-text">{{ entry.details }}</p>
+                                                {% endif %}
+                                            </div>
+                                            <form method="POST" action="{{ url_for('delete_diary_entry', entry_id=entry.id) }}" onsubmit="return confirm('Are you sure you want to delete this entry?');">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="text-center py-5">
+                                    <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                                    <h5>No entries yet</h5>
+                                    <p>Start tracking your farming activities by adding entries.</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+<script src="{{ url_for('static', filename='js/farm_diary.js') }}"></script>
+{% endblock %}

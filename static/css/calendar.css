@@ -1,0 +1,185 @@
+/* Calendar Styles for KrishiCalendar */
+
+/* Calendar Container */
+.calendar-container {
+  margin-bottom: 2rem;
+}
+
+/* Calendar Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#calendarTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Calendar Grid */
+.calendar-grid {
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.calendar-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-week.header {
+  background-color: var(--secondary-bg);
+  font-weight: bold;
+}
+
+.calendar-day-header {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.calendar-day {
+  height: 5rem;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  text-align: right;
+  font-size: 0.875rem;
+  position: relative;
+  background-color: var(--bg-color);
+  transition: background-color 0.2s;
+}
+
+.calendar-day:hover {
+  background-color: var(--secondary-bg);
+  cursor: pointer;
+}
+
+.calendar-day.empty {
+  background-color: var(--secondary-bg);
+  opacity: 0.5;
+}
+
+.calendar-day.today {
+  background-color: rgba(40, 167, 69, 0.1);
+  font-weight: bold;
+  border: 2px solid var(--success-color);
+}
+
+.calendar-day.has-events {
+  font-weight: bold;
+}
+
+/* Event indicators */
+.event-indicator-container {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  display: flex;
+  gap: 3px;
+}
+
+.task-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Task Cards */
+.task-card {
+  margin-bottom: 15px;
+  border-left-width: 5px;
+  transition: all 0.3s;
+}
+
+.task-card.completed {
+  opacity: 0.7;
+  background-color: var(--secondary-bg);
+}
+
+.task-card .card-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.task-card .badge {
+  margin-left: 0.5rem;
+}
+
+/* Dark mode adjustments */
+.dark-mode .calendar-day.today {
+  background-color: rgba(40, 167, 69, 0.3);
+}
+
+.dark-mode .calendar-day.empty {
+  background-color: var(--secondary-bg);
+  opacity: 0.3;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767.98px) {
+  .calendar-day {
+    height: 4rem;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+  }
+  
+  .calendar-day-header {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .event-indicator-container {
+    bottom: 2px;
+    left: 2px;
+  }
+  
+  .task-dot {
+    height: 6px;
+    width: 6px;
+  }
+}
+
+/* Task filtering */
+.filter-container {
+  margin-bottom: 1rem;
+}
+
+/* Completed task styling */
+.completed-task {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* Custom tooltips */
+.tooltip-inner {
+  max-width: 200px;
+  padding: 0.5rem;
+  background-color: var(--dark);
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+/* Animation for events */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.calendar-day.has-events:hover {
+  animation: pulse 1s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendar-day.has-events:hover {
+    animation: none;
+  }
+}

@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="display-4"><span class="text-success">Agri</span><span class="text-primary">Saarthi</span></h1>
+            <h2 class="subtitle">Your AI-Driven Smart Farming Assistant</h2>
+            <p class="lead mt-4">
+                Revolutionizing Indian agriculture with intelligent crop recommendations, fertilizer suggestions, 
+                plant disease detection, and smart farm management tools — all accessible in multiple Indian languages.
+            </p>
+            <div class="cta-buttons mt-4">
+                <a href="#features" class="btn btn-success btn-lg me-2">Explore Features</a>
+                {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg">Get Started</a>
+                {% else %}
+                <a href="{{ url_for('crop_recommendation') }}" class="btn btn-outline-primary btn-lg">Get Crop Recommendations</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="hero-image">
+                <img src="https://pixabay.com/get/g7b1961418f6808b17a3918082a4ce77b3e433be864b725c388b9ea8b4505a2eb4dd6a87c63fc8bf78bf6c17a7e16f2bc055a8a9633c634d53a12fb6953f9f0f3_1280.jpg" alt="Indian Farming Landscape" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="features" class="py-5">
+    <h2 class="text-center mb-5">Our Smart Farming Features</h2>
+    
+    <div class="row g-4">
+        <!-- Crop Recommendation -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-seedling fa-3x text-success"></i>
+                    </div>
+                    <h3 class="card-title">Crop Recommendation</h3>
+                    <p class="card-text">Get AI-powered suggestions for the most suitable crops based on your soil parameters and climate conditions.</p>
+                    <a href="{{ url_for('crop_recommendation') }}" class="btn btn-sm btn-outline-success mt-3">Try Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Fertilizer Recommendation -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-flask fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="card-title">Fertilizer Suggestion</h3>
+                    <p class="card-text">Discover the right fertilizers for your crops based on soil nutrient analysis and crop requirements.</p>
+                    <a href="{{ url_for('fertilizer_recommendation') }}" class="btn btn-sm btn-outline-primary mt-3">Try Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Disease Detection -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-bug fa-3x text-danger"></i>
+                    </div>
+                    <h3 class="card-title">Disease Detection</h3>
+                    <p class="card-text">Upload plant images to identify diseases, understand causes, and get treatment recommendations.</p>
+                    <a href="{{ url_for('disease_detection') }}" class="btn btn-sm btn-outline-danger mt-3">Try Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FarmBook -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-book fa-3x text-warning"></i>
+                    </div>
+                    <h3 class="card-title">FarmBook</h3>
+                    <p class="card-text">Maintain a digital farm diary to track sowing, fertilizing, expenses, and harvest records.</p>
+                    <a href="{{ url_for('farm_diary') }}" class="btn btn-sm btn-outline-warning mt-3">Try Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- KrishiCalendar -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-calendar-alt fa-3x text-info"></i>
+                    </div>
+                    <h3 class="card-title">KrishiCalendar</h3>
+                    <p class="card-text">Plan and schedule all your farming activities with reminders for important tasks.</p>
+                    <a href="{{ url_for('task_planner') }}" class="btn btn-sm btn-outline-info mt-3">Try Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Knowledge Hub -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-graduation-cap fa-3x text-secondary"></i>
+                    </div>
+                    <h3 class="card-title">Knowledge Hub</h3>
+                    <p class="card-text">Access comprehensive farming guides, tutorials, and best practices for beginners and experts.</p>
+                    <a href="{{ url_for('knowledge_hub') }}" class="btn btn-sm btn-outline-secondary mt-3">Explore</a>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        <!-- Multi-Language Support -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-language fa-3x text-success"></i>
+                    </div>
+                    <h3 class="card-title">Multi-Language</h3>
+                    <p class="card-text">Access all features in multiple Indian languages including Hindi, Tamil, Telugu, and more.</p>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-success mt-3 dropdown-toggle" type="button" id="languageMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Change Language
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="languageMenuButton">
+                            <li>
+                                <form action="{{ url_for('set_language') }}" method="post">
+                                    <button type="submit" name="language" value="en" class="dropdown-item">English</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ url_for('set_language') }}" method="post">
+                                    <button type="submit" name="language" value="hi" class="dropdown-item">हिंदी (Hindi)</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ url_for('set_language') }}" method="post">
+                                    <button type="submit" name="language" value="ta" class="dropdown-item">தமிழ் (Tamil)</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">How AgriSaarthi Helps Indian Farmers</h2>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://pixabay.com/get/g2d4ce6cb39696b6a8ebb60c9585f02c4bcfab0c9126f44ee3a929319bf3039969da0f96dbda888e0ed04773937903a145b37ef9af205587a3064f0e6d5dac053_1280.jpg" alt="Farming in India" class="img-fluid rounded shadow mb-4">
+            </div>
+            <div class="col-md-6">
+                <div class="accordion" id="farmingAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fas fa-chart-line me-2"></i> Increased Crop Yield
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#farmingAccordion">
+                            <div class="accordion-body">
+                                Our crop recommendation system analyzes soil conditions and climate to suggest the most suitable crops, leading to improved yield and quality. Farmers have reported up to 25% increase in productivity by following our recommendations.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="fas fa-rupee-sign me-2"></i> Cost Reduction
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#farmingAccordion">
+                            <div class="accordion-body">
+                                Optimize fertilizer usage based on soil needs, reducing wastage and environmental impact. Early disease detection helps prevent crop losses and reduces treatment costs. Our digital farm management tools improve resource allocation.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="fas fa-book-reader me-2"></i> Knowledge Empowerment
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#farmingAccordion">
+                            <div class="accordion-body">
+                                Access to expert farming knowledge and best practices in regional languages makes advanced techniques accessible to all farmers regardless of educational background. Our AI assistant provides 24/7 guidance on farming questions.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <i class="fas fa-mobile-alt me-2"></i> Digital Transformation
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#farmingAccordion">
+                            <div class="accordion-body">
+                                Replace paper records with our digital FarmBook. Manage farm tasks efficiently with KrishiCalendar's visual planner and reminders. Our mobile-responsive design ensures access from basic smartphones, even in areas with limited connectivity.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Success Stories from Indian Farmers</h2>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card testimonial-card h-100">
+                    <div class="card-body">
+                        <div class="testimonial-image mb-3">
+                            <img src="https://pixabay.com/get/gd9d479c35e75c9d3224459e77389624ab423544b492698794ddbd6ecb34fbb4142b57318ade01d7eeff328c390e6cc97ce41d99cb343d25524589de014ea19fe_1280.jpg" alt="Farmer Portrait" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title">Rajesh Kumar</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Wheat Farmer, Punjab</h6>
+                        <p class="card-text">
+                            "After using AgriSaarthi's fertilizer recommendations, I reduced my input costs by 30% while maintaining the same yield. The disease detection feature helped me quickly identify and treat wheat rust before it spread across my field."
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card testimonial-card h-100">
+                    <div class="card-body">
+                        <div class="testimonial-image mb-3">
+                            <img src="https://pixabay.com/get/gc179c60570543e27dbefb4b4408ed1fe8f64b7663d3d87685a405f3295dc09a08a79f6f748068d8b226e8ec468227b15e948a4b4e7d0116fea3492682a3036f5_1280.jpg" alt="Farmer Portrait" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title">Lakshmi Devi</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Rice Farmer, Tamil Nadu</h6>
+                        <p class="card-text">
+                            "AgriSaarthi in Tamil language made it easy for me to understand advanced farming techniques. The FarmBook feature helps me track all expenses and plan better for the next season. My rice crop yield has improved by 20%."
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card testimonial-card h-100">
+                    <div class="card-body">
+                        <div class="testimonial-image mb-3">
+                            <img src="https://pixabay.com/get/g65885ced1e44132e4a9cf9841ffebe99ff3b2e288e5e5c2a1af4b2c6baec7e80e9578fa933318de139b907907dfa5f035c51fcf44f9f838474aa46dfa4746629_1280.jpg" alt="Farmer Portrait" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        <h5 class="card-title">Mohammed Ismail</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Cotton Farmer, Gujarat</h6>
+                        <p class="card-text">
+                            "The AI assistant helped me learn about modern pest management techniques for cotton. Using the task planner, I never miss critical spraying schedules. My profits increased by 35% last season with better crop quality."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light call-to-action">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Transform Your Farming?</h2>
+        <p class="lead mb-4">Join thousands of Indian farmers who are already benefiting from AgriSaarthi's smart farming solutions.</p>
+        <div class="cta-buttons">
+            {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('register') }}" class="btn btn-success btn-lg me-2">Sign Up Now</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">Login</a>
+            {% else %}
+            <a href="{{ url_for('crop_recommendation') }}" class="btn btn-success btn-lg me-2">Get Crop Recommendations</a>
+            <a href="{{ url_for('farm_diary') }}" class="btn btn-outline-primary btn-lg">Start Your Farm Diary</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

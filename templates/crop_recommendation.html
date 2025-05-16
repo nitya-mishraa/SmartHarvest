@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block additional_css %}
+<style>
+    .recommended-crop {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        margin-top: 20px;
+        border-left: 5px solid #28a745;
+    }
+    
+    .recommendation-image {
+        max-height: 200px;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0"><i class="fas fa-seedling me-2"></i>Crop Recommendation System</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="lead">Enter your soil parameters and climate conditions to get AI-powered crop recommendations suitable for your farm.</p>
+                        
+                        <div class="alert alert-info" role="alert">
+                            <i class="fas fa-info-circle me-2"></i>For best results, use recent soil test results if available. The more accurate your input data, the better our recommendations will be.
+                        </div>
+                        
+                        <form method="POST" action="{{ url_for('crop_recommendation') }}" id="cropRecommendationForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nitrogen" class="form-label">Nitrogen (N) content in soil (mg/kg)</label>
+                                    <input type="number" class="form-control" id="nitrogen" name="nitrogen" required min="0" max="500" step="0.01" placeholder="e.g., 40">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="phosphorus" class="form-label">Phosphorus (P) content in soil (mg/kg)</label>
+                                    <input type="number" class="form-control" id="phosphorus" name="phosphorus" required min="0" max="500" step="0.01" placeholder="e.g., 35">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="potassium" class="form-label">Potassium (K) content in soil (mg/kg)</label>
+                                    <input type="number" class="form-control" id="potassium" name="potassium" required min="0" max="500" step="0.01" placeholder="e.g., 45">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="temperature" class="form-label">Temperature (°C)</label>
+                                    <input type="number" class="form-control" id="temperature" name="temperature" required min="0" max="50" step="0.1" placeholder="e.g., 28">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="humidity" class="form-label">Humidity (%)</label>
+                                    <input type="number" class="form-control" id="humidity" name="humidity" required min="0" max="100" step="0.1" placeholder="e.g., 65">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="ph" class="form-label">pH value</label>
+                                    <input type="number" class="form-control" id="ph" name="ph" required min="0" max="14" step="0.1" placeholder="e.g., 6.5">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="rainfall" class="form-label">Rainfall (mm)</label>
+                                    <input type="number" class="form-control" id="rainfall" name="rainfall" required min="0" max="5000" step="0.1" placeholder="e.g., 120">
+                                </div>
+                                
+                                <div class="col-12 mt-4">
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-search me-2"></i>Get Crop Recommendation
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="text-center mb-4">
+                            <img src="https://pixabay.com/get/g357fbe7b44315dfa379730901c99291606c3d983e3d8b11631218a235b0d1559c6c43b5e8550bc8d7dc5b0eb83ffd803c99c551960ac813433d3c6a88b93c5ac_1280.jpg" alt="Crop Growth Stages" class="img-fluid rounded">
+                        </div>
+                        
+                        {% if prediction %}
+                        <div class="recommended-crop">
+                            <h4 class="text-success mb-3">
+                                <i class="fas fa-leaf me-2"></i>Recommended Crop: {{ prediction }}
+                            </h4>
+                            
+                            <p>Based on your soil parameters and climate conditions, we recommend growing <strong>{{ prediction }}</strong> for optimal yield.</p>
+                            
+                            <div class="mt-3">
+                                <h5>Why this crop?</h5>
+                                <ul>
+                                    <li>Suitable for your soil's nutrient profile (N: {{ request.form.get('nitrogen') }}, P: {{ request.form.get('phosphorus') }}, K: {{ request.form.get('potassium') }})</li>
+                                    <li>Compatible with your local climate conditions (Temperature: {{ request.form.get('temperature') }}°C, Humidity: {{ request.form.get('humidity') }}%)</li>
+                                    <li>Appropriate for your soil pH ({{ request.form.get('ph') }}) and rainfall patterns ({{ request.form.get('rainfall') }} mm)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                                <a href="{{ url_for('fertilizer_recommendation') }}" class="btn btn-outline-primary">
+                                    <i class="fas fa-flask me-2"></i>Get Fertilizer Recommendations
+                                </a>
+                            </div>
+                        </div>
+                        {% elif error %}
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>{{ error }}
+                        </div>
+                        {% else %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">How It Works</h5>
+                                <ol>
+                                    <li>Enter your soil's nutrient levels (N, P, K)</li>
+                                    <li>Add environmental parameters (temperature, humidity, pH, rainfall)</li>
+                                    <li>Our AI model analyzes your data</li>
+                                    <li>Get a recommendation for the most suitable crop</li>
+                                </ol>
+                                <p>The model is trained on extensive agricultural data from across different regions of India.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Where to get soil parameters?</h5>
+                                <ul>
+                                    <li>Local agricultural extension centers</li>
+                                    <li>Mobile soil testing labs</li>
+                                    <li>Krishi Vigyan Kendras (KVKs)</li>
+                                    <li>Home testing kits (less accurate but helpful)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+<script src="{{ url_for('static', filename='js/crop_recommendation.js') }}"></script>
+{% endblock %}

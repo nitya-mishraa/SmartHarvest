@@ -1,0 +1,382 @@
+/* Main CSS Styles for AgriSaarthi */
+
+:root {
+  /* Light mode colors */
+  --primary-color: #007bff;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
+  --text-color: #212529;
+  --bg-color: #ffffff;
+  --secondary-bg: #f8f9fa;
+  --border-color: #dee2e6;
+  --card-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  /* Font settings */
+  --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --heading-font-weight: 500;
+}
+
+/* Dark mode colors */
+.dark-mode {
+  --primary-color: #0d6efd;
+  --success-color: #198754;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #0dcaf0;
+  --text-color: #f8f9fa;
+  --bg-color: #212529;
+  --secondary-bg: #343a40;
+  --border-color: #495057;
+  --card-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.35);
+}
+
+/* Base styles */
+body {
+  font-family: var(--body-font);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content */
+main {
+  flex: 1 0 auto;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--heading-font-weight);
+  margin-bottom: 1rem;
+}
+
+.text-success {
+  color: var(--success-color) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.hero-image img {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.subtitle {
+  font-size: 1.75rem;
+  margin-top: 0.5rem;
+  font-weight: 300;
+}
+
+/* Cards */
+.card {
+  border-radius: 0.5rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  border-top-left-radius: 0.5rem !important;
+  border-top-right-radius: 0.5rem !important;
+  padding: 1rem 1.5rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Feature Cards */
+.feature-card {
+  text-align: center;
+  padding: 1rem;
+  height: 100%;
+}
+
+.feature-icon {
+  margin-bottom: 1rem;
+}
+
+/* Navbar */
+.navbar {
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-light {
+  background-color: var(--bg-color) !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: var(--primary-color);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-warning {
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-info {
+  background-color: var(--info-color);
+  border-color: var(--info-color);
+}
+
+.btn-outline-success,
+.btn-outline-primary,
+.btn-outline-warning,
+.btn-outline-danger,
+.btn-outline-info {
+  background-color: transparent;
+}
+
+.btn-outline-success {
+  color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--success-color);
+  color: #fff;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Forms */
+.form-control, .form-select {
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.input-group-text {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+/* Alerts */
+.alert {
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+  background-color: var(--secondary-bg);
+  padding: 3rem 0 0;
+  margin-top: 3rem;
+  color: var(--text-color);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.testimonial-image img {
+  margin: 0 auto 1rem;
+}
+
+/* Call to Action Section */
+.call-to-action {
+  padding: 3rem 0;
+  margin-top: 3rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 767.98px) {
+  .hero-section {
+    text-align: center;
+    padding: 2rem 0;
+  }
+  
+  .hero-image {
+    margin-top: 2rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 0.5rem;
+}
+
+.theme-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* High contrast for outdoor visibility */
+@media (prefers-contrast: high) {
+  :root {
+    --text-color: #000000;
+    --bg-color: #ffffff;
+    --border-color: #000000;
+  }
+  
+  .dark-mode {
+    --text-color: #ffffff;
+    --bg-color: #000000;
+    --border-color: #ffffff;
+  }
+  
+  .card, .btn, .form-control, .form-select, .alert, .input-group-text {
+    border-width: 2px;
+  }
+  
+  .text-muted {
+    color: #555555 !important;
+  }
+  
+  .dark-mode .text-muted {
+    color: #bbbbbb !important;
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Print styles for farm diary exports */
+@media print {
+  header, footer, form, .btn {
+    display: none !important;
+  }
+  
+  body {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .card {
+    border: 1px solid #000000;
+    box-shadow: none;
+  }
+}
+
+/* Profile page */
+.profile-avatar {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.activity-icon {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Multilingual Support */
+.language-label {
+  margin-right: 0.5rem;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Focus styles for accessibility */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+  outline: 3px solid rgba(13, 110, 253, 0.5);
+  outline-offset: 2px;
+}

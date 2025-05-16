@@ -1,0 +1,689 @@
+{% extends 'base.html' %}
+
+{% block additional_css %}
+<style>
+    .knowledge-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-bottom: 1.5rem;
+        height: 100%;
+    }
+    
+    .knowledge-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    
+    .knowledge-header {
+        padding: 1.5rem 0;
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .category-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .article-card {
+        border-left: 4px solid #28a745;
+        margin-bottom: 1.5rem;
+    }
+    
+    .article-header {
+        background-color: rgba(40, 167, 69, 0.1);
+    }
+    
+    .resource-image {
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .tag {
+        background-color: #e9ecef;
+        color: #495057;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="knowledge-header text-center">
+    <div class="container">
+        <h2 class="display-5"><i class="fas fa-graduation-cap me-3"></i>Farming Knowledge Hub</h2>
+        <p class="lead">Access comprehensive guides and resources for both beginners and experienced farmers</p>
+        
+        <div class="search-box mt-4">
+            <div class="input-group mb-3 mx-auto" style="max-width: 600px;">
+                <input type="text" class="form-control" id="knowledgeSearch" placeholder="Search articles, guides, and resources...">
+                <button class="btn btn-success" type="button" id="searchButton">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Knowledge Categories -->
+    <section class="mb-5">
+        <h3 class="mb-4">Knowledge Categories</h3>
+        
+        <div class="row g-4">
+            <!-- Soil Management -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card knowledge-card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon text-success">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h4 class="card-title">Soil Management</h4>
+                        <p class="card-text">Learn about soil types, testing, improvement techniques, and conservation practices.</p>
+                        <a href="#soil-section" class="btn btn-outline-success stretched-link">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Crop Selection -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card knowledge-card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon text-primary">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h4 class="card-title">Crop Selection</h4>
+                        <p class="card-text">Discover seasonal crop guides, rotation practices, and region-specific recommendations.</p>
+                        <a href="#crop-section" class="btn btn-outline-primary stretched-link">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Farming Equipment -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card knowledge-card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon text-secondary">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <h4 class="card-title">Farming Equipment</h4>
+                        <p class="card-text">Understand basic and advanced equipment, maintenance tips, and selection guides.</p>
+                        <a href="#equipment-section" class="btn btn-outline-secondary stretched-link">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Water Management -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card knowledge-card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon text-info">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h4 class="card-title">Water Management</h4>
+                        <p class="card-text">Explore irrigation techniques, rainwater harvesting, and water conservation strategies.</p>
+                        <a href="#water-section" class="btn btn-outline-info stretched-link">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pest & Disease Control -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card knowledge-card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon text-danger">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h4 class="card-title">Pest & Disease Control</h4>
+                        <p class="card-text">Learn about common pests and diseases, prevention methods, and treatment options.</p>
+                        <a href="#pest-section" class="btn btn-outline-danger stretched-link">Explore</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Organic Farming -->
+            <div class="col-md-4 col-sm-6">
+                <div class="card knowledge-card h-100">
+                    <div class="card-body text-center">
+                        <div class="category-icon text-warning">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4 class="card-title">Organic Farming</h4>
+                        <p class="card-text">Discover organic practices, certification processes, and sustainable farming methods.</p>
+                        <a href="#organic-section" class="btn btn-outline-warning stretched-link">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Soil Management Section -->
+    <section id="soil-section" class="mb-5">
+        <div class="d-flex align-items-center mb-4">
+            <div class="bg-success p-3 me-3 rounded-circle text-white">
+                <i class="fas fa-mountain"></i>
+            </div>
+            <h3 class="mb-0">Soil Management</h3>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Featured Article -->
+                <div class="card article-card mb-4">
+                    <div class="card-header article-header">
+                        <h4 class="mb-0">Understanding Soil Types and Their Properties</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <span class="tag"><i class="fas fa-book-reader me-1"></i>Beginner</span>
+                            <span class="tag"><i class="fas fa-clock me-1"></i>10 min read</span>
+                        </div>
+                        
+                        <p class="card-text">Soil is the foundation of successful farming. Different soil types have varying characteristics that affect water retention, nutrient availability, and crop growth.</p>
+                        
+                        <h5>Major Soil Types in India</h5>
+                        <ul>
+                            <li><strong>Black Soil (Regur)</strong>: Rich in clay, good for cotton and sugarcane</li>
+                            <li><strong>Alluvial Soil</strong>: Found in river basins, excellent for most crops</li>
+                            <li><strong>Red Soil</strong>: Contains iron oxide, suitable for millets and pulses</li>
+                            <li><strong>Laterite Soil</strong>: Found in high rainfall areas, requires nutrient management</li>
+                            <li><strong>Desert Soil</strong>: Sandy texture, low fertility, requires irrigation</li>
+                        </ul>
+                        
+                        <h5>Understanding Soil Properties</h5>
+                        <p>Key properties to understand include:</p>
+                        <ul>
+                            <li><strong>Texture</strong>: The proportion of sand, silt, and clay</li>
+                            <li><strong>Structure</strong>: How soil particles arrange themselves</li>
+                            <li><strong>pH Level</strong>: Acidity or alkalinity (optimal range: 6.0-7.5 for most crops)</li>
+                            <li><strong>Organic Matter</strong>: Decayed plant and animal material that improves fertility</li>
+                            <li><strong>Water Holding Capacity</strong>: Ability to retain moisture for plant use</li>
+                        </ul>
+                        
+                        <a href="#" class="btn btn-outline-success">Read Full Article</a>
+                    </div>
+                </div>
+                
+                <!-- More Articles -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Soil Testing: A Step-by-Step Guide</h5>
+                                <p class="card-text">Learn how to collect soil samples, interpret test results, and make informed decisions based on soil analysis.</p>
+                                <div class="mb-2">
+                                    <span class="tag">Intermediate</span>
+                                    <span class="tag">Practical Guide</span>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-success">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Soil Conservation Techniques</h5>
+                                <p class="card-text">Explore methods to prevent erosion, maintain soil health, and ensure sustainable productivity.</p>
+                                <div class="mb-2">
+                                    <span class="tag">Advanced</span>
+                                    <span class="tag">Sustainability</span>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-success">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Quick Soil Facts</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex">
+                            <i class="fas fa-info-circle text-success me-2 mt-1"></i>
+                            <span>It takes about 500 years to form 1 inch of topsoil naturally</span>
+                        </li>
+                        <li class="list-group-item d-flex">
+                            <i class="fas fa-info-circle text-success me-2 mt-1"></i>
+                            <span>One teaspoon of soil contains more microorganisms than there are people on Earth</span>
+                        </li>
+                        <li class="list-group-item d-flex">
+                            <i class="fas fa-info-circle text-success me-2 mt-1"></i>
+                            <span>Healthy soil can store up to 3,750 tons of water per hectare</span>
+                        </li>
+                        <li class="list-group-item d-flex">
+                            <i class="fas fa-info-circle text-success me-2 mt-1"></i>
+                            <span>Indian soils are generally deficient in nitrogen and phosphorus</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <img src="https://pixabay.com/get/g220ec86a6b075cf008681b23370cebe1bffcb6a4ab778fc76165d00a0c5f3987daa1e8925b374047130fead3b7c9b8ec34bc48b657b3a9adb1b13fcc986074be_1280.jpg" class="card-img-top resource-image" alt="Soil Testing">
+                    <div class="card-body">
+                        <h5 class="card-title">Resources</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fas fa-file-pdf me-2"></i>Soil Health Card Guide</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fas fa-video me-2"></i>Soil Testing Tutorial Video</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none"><i class="fas fa-link me-2"></i>Find Nearest Soil Testing Lab</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Crop Selection Section -->
+    <section id="crop-section" class="mb-5">
+        <div class="d-flex align-items-center mb-4">
+            <div class="bg-primary p-3 me-3 rounded-circle text-white">
+                <i class="fas fa-seedling"></i>
+            </div>
+            <h3 class="mb-0">Crop Selection</h3>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://pixabay.com/get/g4d848b48a14fb25902db6a977b06ca8ca40a31f7949f0e3d20d2fd66729285e79838e1040970709f4255cb0840095751ee2939cc71ca439b625890706fe045cc_1280.jpg" class="img-fluid rounded-start h-100" alt="Crop Growth" style="object-fit: cover;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Seasonal Crop Guide</h5>
+                                <p class="card-text">Understand which crops thrive in different seasons across various regions of India.</p>
+                                <div class="mb-2">
+                                    <span class="tag">Seasonal Planning</span>
+                                    <span class="tag">All Regions</span>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-primary">View Guide</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://pixabay.com/get/g88a91c4df6693f188a0ec51d8826baf651f6576b49ba0a76be6fa796168f649a5db6cbeb664fb8036a19f2afcb82af0e0094c84fddfa3d53b1a31a164a6cd853_1280.jpg" class="img-fluid rounded-start h-100" alt="Crop Rotation" style="object-fit: cover;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Crop Rotation Benefits</h5>
+                                <p class="card-text">Learn how proper crop rotation improves soil health, reduces pests, and increases yields.</p>
+                                <div class="mb-2">
+                                    <span class="tag">Sustainable Farming</span>
+                                    <span class="tag">Intermediate</span>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seasonal Calendar -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Seasonal Crop Calendar for India</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Season</th>
+                                <th>Period</th>
+                                <th>Major Crops</th>
+                                <th>Best Regions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Kharif</strong></td>
+                                <td>June-October (Monsoon)</td>
+                                <td>Rice, Maize, Jowar, Bajra, Cotton, Groundnut, Soybean</td>
+                                <td>Most of India with good rainfall</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rabi</strong></td>
+                                <td>October-March (Winter)</td>
+                                <td>Wheat, Barley, Gram, Mustard, Linseed, Peas</td>
+                                <td>North and Central India</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zaid</strong></td>
+                                <td>March-June (Summer)</td>
+                                <td>Watermelon, Muskmelon, Cucumber, Vegetables</td>
+                                <td>Areas with irrigation facilities</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>This is a general guide. Local climate conditions and soil types should also be considered when selecting crops.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Region-specific crops -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Region-Specific Crop Recommendations</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">North India</h5>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Wheat</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Rice</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Sugarcane</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Mustard</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">South India</h5>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Rice</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Coconut</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Coffee</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Rubber</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Central & Western India</h5>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Cotton</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Soybean</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Jowar</li>
+                                            <li><i class="fas fa-check-circle text-success me-2"></i>Groundnut</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Other sections would be similar in structure -->
+    
+    <!-- For brevity, showing collapsed sections with expand option -->
+    <div class="accordion" id="knowledgeAccordion">
+        <!-- Equipment Section -->
+        <div class="accordion-item" id="equipment-section">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEquipment" aria-expanded="false" aria-controls="collapseEquipment">
+                    <div class="bg-secondary p-2 me-3 rounded-circle text-white">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <span class="fs-4">Farming Equipment</span>
+                </button>
+            </h2>
+            <div id="collapseEquipment" class="accordion-collapse collapse" data-bs-parent="#knowledgeAccordion">
+                <div class="accordion-body">
+                    <p class="lead">Content about farming equipment will be displayed here when expanded.</p>
+                    <a href="#" class="btn btn-outline-secondary">View Complete Section</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Water Management Section -->
+        <div class="accordion-item" id="water-section">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWater" aria-expanded="false" aria-controls="collapseWater">
+                    <div class="bg-info p-2 me-3 rounded-circle text-white">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <span class="fs-4">Water Management</span>
+                </button>
+            </h2>
+            <div id="collapseWater" class="accordion-collapse collapse" data-bs-parent="#knowledgeAccordion">
+                <div class="accordion-body">
+                    <p class="lead">Content about water management will be displayed here when expanded.</p>
+                    <a href="#" class="btn btn-outline-info">View Complete Section</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pest Management Section -->
+        <div class="accordion-item" id="pest-section">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePest" aria-expanded="false" aria-controls="collapsePest">
+                    <div class="bg-danger p-2 me-3 rounded-circle text-white">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <span class="fs-4">Pest & Disease Control</span>
+                </button>
+            </h2>
+            <div id="collapsePest" class="accordion-collapse collapse" data-bs-parent="#knowledgeAccordion">
+                <div class="accordion-body">
+                    <p class="lead">Content about pest and disease control will be displayed here when expanded.</p>
+                    <a href="#" class="btn btn-outline-danger">View Complete Section</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Organic Farming Section -->
+        <div class="accordion-item" id="organic-section">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOrganic" aria-expanded="false" aria-controls="collapseOrganic">
+                    <div class="bg-warning p-2 me-3 rounded-circle text-white">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span class="fs-4">Organic Farming</span>
+                </button>
+            </h2>
+            <div id="collapseOrganic" class="accordion-collapse collapse" data-bs-parent="#knowledgeAccordion">
+                <div class="accordion-body">
+                    <p class="lead">Content about organic farming will be displayed here when expanded.</p>
+                    <a href="#" class="btn btn-outline-warning">View Complete Section</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional Resources -->
+    <section class="mt-5">
+        <h3 class="mb-4">Additional Resources</h3>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-file-pdf text-danger me-2"></i>PDF Guides</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Complete Guide to Organic Farming</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Common Plant Diseases & Treatment</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Seasonal Crop Calendar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-video text-primary me-2"></i>Video Tutorials</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">How to Test Soil pH at Home</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Natural Pest Control Methods</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Water Conservation Techniques</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-link text-success me-2"></i>Useful Links</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Indian Agricultural Research Institute</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">National Bank for Agriculture and Rural Development</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none">Farmers' Portal - Government of India</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="mt-5 mb-5">
+        <h3 class="mb-4">Frequently Asked Questions</h3>
+        
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="false">
+                        How often should I test my soil?
+                    </button>
+                </h2>
+                <div id="faqOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Ideally, you should test your soil once every 2-3 years. However, if you're starting a new crop or experiencing issues with plant growth, more frequent testing is recommended. Regular soil testing helps you track changes in soil fertility and adjust your management practices accordingly.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false">
+                        What are the benefits of crop rotation?
+                    </button>
+                </h2>
+                <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Crop rotation offers numerous benefits: it helps break pest and disease cycles, improves soil structure and fertility, reduces soil erosion, manages weed populations, and can increase yields. Different crops have different nutrient requirements and root depths, and rotating them helps maintain balanced soil health.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false">
+                        How can I convert to organic farming?
+                    </button>
+                </h2>
+                <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Converting to organic farming requires a transition period of 2-3 years. Start by focusing on soil health through composting and green manuring. Replace synthetic fertilizers with organic alternatives gradually. Implement natural pest control methods, maintain crop diversity, and consider certification requirements if you plan to sell certified organic products.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false">
+                        What government schemes are available for farmers in India?
+                    </button>
+                </h2>
+                <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Several government schemes benefit Indian farmers: Pradhan Mantri Kisan Samman Nidhi (PM-KISAN) provides income support, Pradhan Mantri Fasal Bima Yojana offers crop insurance, Kisan Credit Card scheme provides credit access, Soil Health Card scheme helps manage soil fertility, and PMKSY supports irrigation infrastructure. Check with your local agriculture department for more schemes and application processes.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Knowledge search functionality
+        const searchInput = document.getElementById('knowledgeSearch');
+        const searchButton = document.getElementById('searchButton');
+        
+        if (searchInput && searchButton) {
+            const performSearch = function() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                
+                if (searchTerm) {
+                    // In a real implementation, this would search through actual content
+                    alert(`Searching for: ${searchTerm}`);
+                    
+                    // You could implement actual search functionality here
+                    // For now, we'll just scroll to a relevant section based on keywords
+                    
+                    if (searchTerm.includes('soil')) {
+                        document.getElementById('soil-section').scrollIntoView({ behavior: 'smooth' });
+                    } else if (searchTerm.includes('crop') || searchTerm.includes('season')) {
+                        document.getElementById('crop-section').scrollIntoView({ behavior: 'smooth' });
+                    } else if (searchTerm.includes('equipment') || searchTerm.includes('machine')) {
+                        document.getElementById('equipment-section').scrollIntoView({ behavior: 'smooth' });
+                    } else if (searchTerm.includes('water') || searchTerm.includes('irrigation')) {
+                        document.getElementById('water-section').scrollIntoView({ behavior: 'smooth' });
+                    } else if (searchTerm.includes('pest') || searchTerm.includes('disease')) {
+                        document.getElementById('pest-section').scrollIntoView({ behavior: 'smooth' });
+                    } else if (searchTerm.includes('organic')) {
+                        document.getElementById('organic-section').scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            };
+            
+            searchButton.addEventListener('click', performSearch);
+            
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        }
+        
+        // Smooth scrolling for section links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // If the target is in a collapsed accordion, expand it
+                    const accordionCollapse = targetElement.querySelector('.accordion-collapse');
+                    if (accordionCollapse && !accordionCollapse.classList.contains('show')) {
+                        const accordionButton = targetElement.querySelector('.accordion-button');
+                        if (accordionButton) {
+                            accordionButton.click();
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
