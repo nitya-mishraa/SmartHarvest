@@ -408,5 +408,26 @@ def set_language():
     session['language'] = language
     return redirect(request.referrer or url_for('index'))
 
+# Add translation helper to all templates
+@app.context_processor
+def inject_language_helper():
+    def translate(text):
+        # Get current language from session or default to English
+        current_language = session.get('language', 'en')
+        # Use our translation utility to translate the text
+        return translate_text(text, current_language)
+    
+    # Get current language for templates
+    current_language = session.get('language', 'en')
+    
+    # Import supported languages from the translate module
+    from utils.translate import SUPPORTED_LANGUAGES
+    
+    return {
+        'translate': translate,
+        'current_language': current_language,
+        'SUPPORTED_LANGUAGES': SUPPORTED_LANGUAGES
+    }
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

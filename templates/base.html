@@ -32,39 +32,39 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('index') }}">
-                                <i class="fas fa-home"></i> Home
+                                <i class="fas fa-home"></i> {{ translate('home') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('crop_recommendation') }}">
-                                <i class="fas fa-seedling"></i> Crop Recommendation
+                                <i class="fas fa-seedling"></i> {{ translate('crop_recommendation') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('fertilizer_recommendation') }}">
-                                <i class="fas fa-flask"></i> Fertilizer Recommendation
+                                <i class="fas fa-flask"></i> {{ translate('fertilizer_recommendation') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('disease_detection') }}">
-                                <i class="fas fa-bug"></i> Disease Detection
+                                <i class="fas fa-bug"></i> {{ translate('disease_detection') }}
                             </a>
                         </li>
                         {% if current_user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('farm_diary') }}">
-                                <i class="fas fa-book"></i> FarmBook
+                                <i class="fas fa-book"></i> {{ translate('farm_diary') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('task_planner') }}">
-                                <i class="fas fa-calendar-alt"></i> KrishiCalendar
+                                <i class="fas fa-calendar-alt"></i> {{ translate('task_planner') }}
                             </a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('knowledge_hub') }}">
-                                <i class="fas fa-graduation-cap"></i> Knowledge Hub
+                                <i class="fas fa-graduation-cap"></i> {{ translate('knowledge_hub') }}
                             </a>
                         </li>
 
@@ -73,37 +73,33 @@
                         <!-- Language selector dropdown -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-language"></i> Language
+                                <i class="fas fa-language"></i> 
+                                {% if current_language == 'en' %}Language{% elif current_language == 'hi' %}भाषा{% elif current_language == 'ta' %}மொழி{% elif current_language == 'te' %}భాష{% elif current_language == 'bn' %}ভাষা{% else %}Language{% endif %}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                                 <li>
                                     <form action="{{ url_for('set_language') }}" method="post">
-                                        <button type="submit" name="language" value="en" class="dropdown-item">English</button>
+                                        <button type="submit" name="language" value="en" class="dropdown-item {% if current_language == 'en' %}active{% endif %}">English</button>
                                     </form>
                                 </li>
                                 <li>
                                     <form action="{{ url_for('set_language') }}" method="post">
-                                        <button type="submit" name="language" value="hi" class="dropdown-item">हिंदी (Hindi)</button>
+                                        <button type="submit" name="language" value="hi" class="dropdown-item {% if current_language == 'hi' %}active{% endif %}">हिंदी (Hindi)</button>
                                     </form>
                                 </li>
                                 <li>
                                     <form action="{{ url_for('set_language') }}" method="post">
-                                        <button type="submit" name="language" value="ta" class="dropdown-item">தமிழ் (Tamil)</button>
+                                        <button type="submit" name="language" value="ta" class="dropdown-item {% if current_language == 'ta' %}active{% endif %}">தமிழ் (Tamil)</button>
                                     </form>
                                 </li>
                                 <li>
                                     <form action="{{ url_for('set_language') }}" method="post">
-                                        <button type="submit" name="language" value="te" class="dropdown-item">తెలుగు (Telugu)</button>
+                                        <button type="submit" name="language" value="te" class="dropdown-item {% if current_language == 'te' %}active{% endif %}">తెలుగు (Telugu)</button>
                                     </form>
                                 </li>
                                 <li>
                                     <form action="{{ url_for('set_language') }}" method="post">
-                                        <button type="submit" name="language" value="bn" class="dropdown-item">বাংলা (Bengali)</button>
-                                    </form>
-                                </li>
-                                <li>
-                                    <form action="{{ url_for('set_language') }}" method="post">
-                                        <button type="submit" name="language" value="mr" class="dropdown-item">मराठी (Marathi)</button>
+                                        <button type="submit" name="language" value="bn" class="dropdown-item {% if current_language == 'bn' %}active{% endif %}">বাংলা (Bengali)</button>
                                     </form>
                                 </li>
                             </ul>
