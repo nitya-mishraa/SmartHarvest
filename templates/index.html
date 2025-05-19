@@ -5,17 +5,16 @@
     <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="display-4"><span class="text-success">Agri</span><span class="text-primary">Saarthi</span></h1>
-            <h2 class="subtitle">Your AI-Driven Smart Farming Assistant</h2>
+            <h2 class="subtitle">{{ translate('your_smart_farming_assistant') }}</h2>
             <p class="lead mt-4">
-                Revolutionizing Indian agriculture with intelligent crop recommendations, fertilizer suggestions, 
-                plant disease detection, and smart farm management tools — all accessible in multiple Indian languages.
+                {{ translate('homepage_description') }}
             </p>
             <div class="cta-buttons mt-4">
-                <a href="#features" class="btn btn-success btn-lg me-2">Explore Features</a>
+                <a href="#features" class="btn btn-success btn-lg me-2">{{ translate('explore_features') }}</a>
                 {% if not current_user.is_authenticated %}
-                <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg">Get Started</a>
+                <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg">{{ translate('get_started') }}</a>
                 {% else %}
-                <a href="{{ url_for('crop_recommendation') }}" class="btn btn-outline-primary btn-lg">Get Crop Recommendations</a>
+                <a href="{{ url_for('crop_recommendation') }}" class="btn btn-outline-primary btn-lg">{{ translate('get_crop_recommendations') }}</a>
                 {% endif %}
             </div>
         </div>
