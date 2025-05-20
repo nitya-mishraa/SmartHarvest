@@ -43,11 +43,34 @@ function addPlayButtonsToModals() {
             if (title) {
                 const modalBody = header.closest('.modal').querySelector('.modal-body');
                 if (modalBody) {
-                    // Create text to be read (title + first paragraph of content)
+                    // Create text to be read (title + comprehensive content)
                     const titleText = title.textContent.trim();
-                    const firstParagraph = modalBody.querySelector('p') ? 
-                        modalBody.querySelector('p').textContent.trim() : '';
-                    const textToRead = titleText + '. ' + firstParagraph;
+                    
+                    // Get paragraphs and headings for a more complete narration
+                    let contentToRead = '';
+                    
+                    // Add first paragraph
+                    if (modalBody.querySelector('p')) {
+                        contentToRead += modalBody.querySelector('p').textContent.trim();
+                    }
+                    
+                    // Add subheadings and their content (limited to avoid overly long narration)
+                    const subheadings = modalBody.querySelectorAll('h4, h5');
+                    subheadings.forEach((heading, index) => {
+                        // Limit to first 3 subheadings to keep narration length reasonable
+                        if (index < 3) {
+                            contentToRead += ' ' + heading.textContent.trim() + '. ';
+                            
+                            // Add first paragraph after this heading if available
+                            const nextElem = heading.nextElementSibling;
+                            if (nextElem && nextElem.tagName === 'P') {
+                                contentToRead += nextElem.textContent.trim();
+                            }
+                        }
+                    });
+                    
+                    // Combine title with content
+                    const textToRead = titleText + '. ' + contentToRead;
                     
                     // Create play button
                     const playButton = document.createElement('button');

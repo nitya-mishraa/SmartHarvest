@@ -116,7 +116,7 @@
                         </div>
                         <h4 class="card-title">Farming Equipment</h4>
                         <p class="card-text">Understand basic and advanced equipment, maintenance tips, and selection guides.</p>
-                        <a href="#equipment-section" class="btn btn-outline-secondary stretched-link">Explore</a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#equipmentModal">Explore</button>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                         </div>
                         <h4 class="card-title">Water Management</h4>
                         <p class="card-text">Explore irrigation techniques, rainwater harvesting, and water conservation strategies.</p>
-                        <a href="#water-section" class="btn btn-outline-info stretched-link">Explore</a>
+                        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#waterManagementModal">Explore</button>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                         </div>
                         <h4 class="card-title">Pest & Disease Control</h4>
                         <p class="card-text">Learn about common pests and diseases, prevention methods, and treatment options.</p>
-                        <a href="#pest-section" class="btn btn-outline-danger stretched-link">Explore</a>
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#pestControlModal">Explore</button>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
                         </div>
                         <h4 class="card-title">Organic Farming</h4>
                         <p class="card-text">Discover organic practices, certification processes, and sustainable farming methods.</p>
-                        <a href="#organic-section" class="btn btn-outline-warning stretched-link">Explore</a>
+                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#organicFarmingModal">Explore</button>
                     </div>
                 </div>
             </div>
@@ -1158,6 +1158,509 @@
                     <li><strong>Southern Peninsula:</strong> Rice, coconut, spices, coffee, and rubber thrive in the tropical conditions</li>
                     <li><strong>Central Highlands:</strong> Soybeans, pulses, and cotton are major commercial crops</li>
                 </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Farming Equipment Modal -->
+<div class="modal fade" id="equipmentModal" tabindex="-1" aria-labelledby="equipmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                <h5 class="modal-title" id="equipmentModalLabel">Farming Equipment Guide</h5>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Farming Equipment Guide. This section covers essential information about various farming tools and machinery, their proper use, and maintenance guidelines to help you choose the right equipment for your farm.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4>Understanding Modern Farming Equipment</h4>
+                <p>Choosing the right equipment can significantly impact farm productivity, operating costs, and overall efficiency. This guide helps you understand different types of equipment and their applications.</p>
+                
+                <div class="alert alert-secondary">
+                    <p><strong>Key Principle:</strong> Match equipment to your specific needs, farm size, crops, and budget. Bigger isn't always better - the right size and functionality are most important.</p>
+                </div>
+                
+                <h4 class="mt-4">Major Categories of Farm Equipment</h4>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">1. Primary Tillage Equipment</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Purpose:</strong> Breaking and loosening soil for planting</p>
+                        <p><strong>Common Equipment:</strong></p>
+                        <ul>
+                            <li><strong>Moldboard Plows:</strong> Invert and pulverize soil; good for incorporating crop residue</li>
+                            <li><strong>Chisel Plows:</strong> Less soil disturbance; good for conservation tillage</li>
+                            <li><strong>Disk Plows:</strong> Circular blades that cut and turn over soil; good for heavy soils</li>
+                            <li><strong>Subsoilers:</strong> Break up compacted soil layers below the surface</li>
+                        </ul>
+                        <p><strong>Selection Considerations:</strong> Soil type, field size, tractor horsepower, conservation goals</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">2. Seeders and Planters</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Purpose:</strong> Precisely placing seeds at proper depth and spacing</p>
+                        <p><strong>Common Equipment:</strong></p>
+                        <ul>
+                            <li><strong>Seed Drills:</strong> Row crop placement with controlled depth</li>
+                            <li><strong>Broadcast Seeders:</strong> For even distribution of smaller seeds</li>
+                            <li><strong>Precision Planters:</strong> Exact seed placement for row crops</li>
+                            <li><strong>Air Seeders:</strong> Large-scale seeding with air delivery system</li>
+                        </ul>
+                        <p><strong>Modern Features:</strong> GPS guidance, variable rate technology, automatic section control</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">3. Irrigation Equipment</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Purpose:</strong> Water delivery to crops</p>
+                        <p><strong>Common Systems:</strong></p>
+                        <ul>
+                            <li><strong>Drip Irrigation:</strong> Water-efficient delivery directly to plant roots</li>
+                            <li><strong>Sprinkler Systems:</strong> Overhead water delivery; various types available</li>
+                            <li><strong>Center Pivot Systems:</strong> Large circular irrigation pattern; good for large fields</li>
+                            <li><strong>Flood Irrigation:</strong> Traditional method; less equipment but more water use</li>
+                        </ul>
+                        <p><strong>Technology Advances:</strong> Soil moisture sensors, weather integration, mobile control systems</p>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Equipment Maintenance Tips</h4>
+                <ol>
+                    <li><strong>Create a maintenance schedule</strong> and stick to it</li>
+                    <li><strong>Clean equipment thoroughly</strong> after each use</li>
+                    <li><strong>Check all fluid levels</strong> regularly (oil, hydraulic fluid, coolant)</li>
+                    <li><strong>Inspect critical components</strong> before every use</li>
+                    <li><strong>Store equipment properly</strong> to prevent weather damage</li>
+                    <li><strong>Keep detailed maintenance records</strong> for each piece of equipment</li>
+                </ol>
+                
+                <div class="alert alert-warning mt-4">
+                    <p><strong>Consider These Before Purchasing:</strong></p>
+                    <ul>
+                        <li>Total cost of ownership (purchase, operation, maintenance)</li>
+                        <li>Reliability and availability of parts and service</li>
+                        <li>Compatibility with existing equipment</li>
+                        <li>Potential for custom hiring as an alternative to purchasing</li>
+                        <li>New vs. used equipment considerations</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Water Management Modal -->
+<div class="modal fade" id="waterManagementModal" tabindex="-1" aria-labelledby="waterManagementModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h5 class="modal-title" id="waterManagementModalLabel">Water Management Techniques</h5>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Water Management Techniques. Learn about efficient irrigation systems, water conservation practices, and rainwater harvesting methods to optimize water usage on your farm.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4>Sustainable Water Management</h4>
+                <p>Water is a precious resource in agriculture. Efficient water management helps conserve water, reduce costs, and maintain optimal crop health.</p>
+                
+                <div class="alert alert-info">
+                    <p><strong>Did You Know?</strong> Agriculture accounts for approximately 70% of global freshwater withdrawals. Implementing efficient irrigation can reduce water usage by 15-50% while maintaining or improving crop yields.</p>
+                </div>
+                
+                <h4 class="mt-4">Irrigation Systems and Techniques</h4>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">1. Drip Irrigation</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>How it works:</strong> Delivers water directly to plant root zones through emitters, tubing, and laterals</p>
+                        <p><strong>Benefits:</strong></p>
+                        <ul>
+                            <li>Water efficiency: 90-95% efficient (compared to 60-70% for sprinklers)</li>
+                            <li>Reduced weed growth between rows</li>
+                            <li>Decreased disease pressure by keeping foliage dry</li>
+                            <li>Compatible with fertigation (fertilizer application through irrigation)</li>
+                        </ul>
+                        <p><strong>Best for:</strong> Vegetables, fruit trees, vineyards, row crops, greenhouses</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">2. Sprinkler Irrigation</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Types:</strong></p>
+                        <ul>
+                            <li><strong>Center Pivot:</strong> Rotating system covering circular areas</li>
+                            <li><strong>Lateral Move:</strong> Similar to center pivot but moves in straight lines</li>
+                            <li><strong>Solid Set:</strong> Fixed sprinkler system</li>
+                            <li><strong>Traveling Gun:</strong> Mobile large sprinkler on wheels</li>
+                        </ul>
+                        <p><strong>Considerations:</strong></p>
+                        <ul>
+                            <li>Wind can affect distribution uniformity</li>
+                            <li>Higher water loss through evaporation and runoff</li>
+                            <li>Good for larger fields with uniform crops</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Water Conservation Practices</h4>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3 h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Soil Management</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>Add organic matter</strong> to improve water retention</li>
+                                    <li><strong>Use mulch</strong> to reduce evaporation and suppress weeds</li>
+                                    <li><strong>Practice conservation tillage</strong> to maintain soil structure</li>
+                                    <li><strong>Plant cover crops</strong> to improve soil health and water infiltration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3 h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Irrigation Scheduling</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>Water based on crop needs</strong> not fixed schedules</li>
+                                    <li><strong>Use soil moisture sensors</strong> for precise irrigation timing</li>
+                                    <li><strong>Consider evapotranspiration rates</strong> when scheduling</li>
+                                    <li><strong>Irrigate during early morning or evening</strong> to reduce evaporation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Rainwater Harvesting</h4>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Rainwater Collection Systems</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Components:</strong></p>
+                        <ul>
+                            <li>Catchment area (roof, land surface)</li>
+                            <li>Conveyance system (gutters, pipes)</li>
+                            <li>Storage facilities (tanks, ponds)</li>
+                            <li>Distribution system (gravity or pumped)</li>
+                            <li>Filtration and treatment (if needed)</li>
+                        </ul>
+                        <p><strong>Tips for Effective Implementation:</strong></p>
+                        <ol>
+                            <li>Calculate your water needs and potential harvest volume</li>
+                            <li>Ensure proper first-flush diversion to prevent contamination</li>
+                            <li>Cover storage to prevent evaporation and mosquito breeding</li>
+                            <li>Include overflow systems for heavy rainfall events</li>
+                            <li>Regularly maintain gutters and filters</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pest Control Modal -->
+<div class="modal fade" id="pestControlModal" tabindex="-1" aria-labelledby="pestControlModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white d-flex justify-content-between align-items-center">
+                <h5 class="modal-title" id="pestControlModalLabel">Pest & Disease Management</h5>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Pest and Disease Management. This guide covers integrated pest management strategies, common crop diseases, and sustainable control methods to protect your crops.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4>Integrated Pest Management (IPM)</h4>
+                <p>IPM is a sustainable approach to managing pests and diseases by combining different management strategies and practices to minimize economic, health, and environmental risks.</p>
+                
+                <div class="alert alert-danger">
+                    <p><strong>Key Principle:</strong> Prevention first, intervention as needed. Focus on long-term prevention through a combination of techniques rather than elimination of pests.</p>
+                </div>
+                
+                <h4 class="mt-4">The IPM Approach</h4>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">1. Identification and Monitoring</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Steps:</strong></p>
+                        <ul>
+                            <li>Correctly identify pests and beneficial organisms</li>
+                            <li>Establish monitoring systems (traps, regular field scouting)</li>
+                            <li>Determine economic thresholds for action</li>
+                            <li>Keep detailed records of pest populations and conditions</li>
+                        </ul>
+                        <p><strong>Tools:</strong> Yellow sticky traps, pheromone traps, scouting logs, magnifying glasses</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">2. Prevention Methods</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Cultural Controls:</strong></p>
+                        <ul>
+                            <li>Crop rotation to break pest cycles</li>
+                            <li>Resistant crop varieties</li>
+                            <li>Adjusting planting dates to avoid pest pressure</li>
+                            <li>Proper sanitation (removing crop residue)</li>
+                            <li>Companion planting to repel pests or attract beneficials</li>
+                        </ul>
+                        <p><strong>Physical Controls:</strong></p>
+                        <ul>
+                            <li>Row covers and netting</li>
+                            <li>Mulches to prevent weed growth</li>
+                            <li>Traps for larger pests</li>
+                            <li>Proper irrigation to reduce disease pressure</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">3. Biological Controls</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Using nature's own solutions:</strong></p>
+                        <ul>
+                            <li>Beneficial insects (ladybugs, lacewings, predatory mites)</li>
+                            <li>Microbial controls (Bt, beneficial fungi, bacteria)</li>
+                            <li>Nematodes for soil pest control</li>
+                            <li>Creating habitat for natural enemies</li>
+                        </ul>
+                        <p><strong>Tips for Success:</strong> Release beneficial organisms at appropriate times and conditions, provide habitat like flowering plants for beneficials, minimize broad-spectrum pesticide use.</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">4. Chemical Controls (Last Resort)</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>When to consider chemicals:</strong></p>
+                        <ul>
+                            <li>When economic thresholds are exceeded</li>
+                            <li>After other methods have been tried</li>
+                            <li>When timing is crucial to prevent a major outbreak</li>
+                        </ul>
+                        <p><strong>Best Practices:</strong></p>
+                        <ul>
+                            <li>Choose targeted pesticides over broad-spectrum ones</li>
+                            <li>Rotate chemical classes to prevent resistance</li>
+                            <li>Apply at optimal timing for greatest effect with least harm</li>
+                            <li>Follow all label instructions and safety precautions</li>
+                            <li>Consider environmental conditions before application</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Common Crop Diseases and Management</h4>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Disease</th>
+                                <th>Affected Crops</th>
+                                <th>Symptoms</th>
+                                <th>Management Strategies</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Powdery Mildew</td>
+                                <td>Cucurbits, grapes, cereals</td>
+                                <td>White powdery spots on leaves and stems</td>
+                                <td>Resistant varieties, proper spacing, fungicides if severe</td>
+                            </tr>
+                            <tr>
+                                <td>Late Blight</td>
+                                <td>Potatoes, tomatoes</td>
+                                <td>Dark water-soaked spots, white fungal growth</td>
+                                <td>Preventative fungicides, destroy infected plants, increase airflow</td>
+                            </tr>
+                            <tr>
+                                <td>Fusarium Wilt</td>
+                                <td>Many vegetables, cotton</td>
+                                <td>Yellowing, wilting, vascular discoloration</td>
+                                <td>Resistant varieties, crop rotation, soil solarization</td>
+                            </tr>
+                            <tr>
+                                <td>Rust</td>
+                                <td>Cereals, beans, coffee</td>
+                                <td>Rusty pustules on leaves</td>
+                                <td>Resistant varieties, early planting, fungicides</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Organic Farming Modal -->
+<div class="modal fade" id="organicFarmingModal" tabindex="-1" aria-labelledby="organicFarmingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                <h5 class="modal-title" id="organicFarmingModalLabel">Organic Farming Practices</h5>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Organic Farming Practices. Learn about sustainable farming methods, organic certification processes, and techniques for growing crops without synthetic chemicals.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4>Introduction to Organic Farming</h4>
+                <p>Organic farming works with natural processes, encouraging the balance of relationships between plants, animals, humans, and the environment. It avoids the use of synthetic chemicals and focuses on building healthy soils and ecosystems.</p>
+                
+                <div class="alert alert-warning">
+                    <p><strong>Core Principles:</strong> Organic farming is based on health, ecology, fairness, and care. It aims to produce food while establishing an ecological balance to prevent soil fertility or pest problems.</p>
+                </div>
+                
+                <h4 class="mt-4">Key Organic Farming Practices</h4>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">1. Soil Management</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Techniques:</strong></p>
+                        <ul>
+                            <li><strong>Composting:</strong> Converting organic waste into rich soil amendments</li>
+                            <li><strong>Cover Cropping:</strong> Growing plants specifically to improve soil health</li>
+                            <li><strong>Crop Rotation:</strong> Changing crops in a specific sequence to enhance soil fertility</li>
+                            <li><strong>Green Manuring:</strong> Growing crops specifically to be plowed back into the soil</li>
+                            <li><strong>Minimal Tillage:</strong> Reducing soil disturbance to maintain structure</li>
+                        </ul>
+                        <p><strong>Benefits:</strong> Increased organic matter, improved water retention, enhanced soil structure, and increased microbial activity</p>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">2. Natural Pest Management</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Approach:</strong> Focus on prevention through ecosystem management rather than elimination of pests</p>
+                        <p><strong>Methods:</strong></p>
+                        <ul>
+                            <li><strong>Beneficial Insects:</strong> Encouraging natural predators</li>
+                            <li><strong>Trap Crops:</strong> Planting species that attract pests away from main crops</li>
+                            <li><strong>Biodiversity:</strong> Creating habitats for natural pest enemies</li>
+                            <li><strong>Physical Barriers:</strong> Using nets, row covers to prevent pest access</li>
+                            <li><strong>Allowed Natural Substances:</strong> Neem oil, diatomaceous earth, botanical extractions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">3. Organic Certification Process</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Steps to Certification:</strong></p>
+                        <ol>
+                            <li><strong>Transition Period:</strong> Usually 2-3 years of organic practices before certification</li>
+                            <li><strong>Documentation:</strong> Create and maintain detailed records of all farm activities</li>
+                            <li><strong>Organic System Plan:</strong> Develop a comprehensive management plan</li>
+                            <li><strong>Inspection:</strong> On-site evaluation by a certifying agent</li>
+                            <li><strong>Review & Certification:</strong> Evaluation of inspection results and final decision</li>
+                            <li><strong>Annual Renewal:</strong> Yearly update of plans and re-inspection</li>
+                        </ol>
+                        <p><strong>In India:</strong> Certification can be obtained through APEDA accredited certification bodies following National Programme for Organic Production (NPOP) standards</p>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Economic Considerations</h4>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3 h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Challenges</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Initial lower yields during transition period</li>
+                                    <li>Higher labor costs in some systems</li>
+                                    <li>Certification costs and paperwork</li>
+                                    <li>Marketing challenges for small producers</li>
+                                    <li>Weather and pest risks without conventional interventions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3 h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Opportunities</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Premium prices for certified products</li>
+                                    <li>Reduced input costs (fertilizers, pesticides)</li>
+                                    <li>Lower risk of chemical exposure-related health issues</li>
+                                    <li>Growing market demand for organic products</li>
+                                    <li>Greater resilience in some systems due to biodiversity</li>
+                                    <li>Ability to participate in specialty markets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-success mt-4">
+                    <p><strong>Starting Small:</strong> Consider transitioning a portion of your farm to organic practices first. This allows you to gain experience, test market demand, and reduce risk while maintaining income from conventional production.</p>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
