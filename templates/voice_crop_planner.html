@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Voice Crop Planner - AgriSaarthi{% endblock %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/voice-assistant.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">{{ translate('voice_crop_planner') }}</h1>
+            <p class="lead">{{ translate('voice_planner_description') }}</p>
+        </div>
+    </div>
+
+    <!-- Voice Assistant Interface -->
+    <div class="row mt-4">
+        <div class="col-lg-8 mx-auto">
+            <div id="voice-assistant-container" class="voice-assistant-container">
+                <div class="voice-assistant-header">
+                    <h2><i class="fas fa-microphone-alt me-2"></i> {{ translate('voice_assistant') }}</h2>
+                    <div class="voice-assistant-language">
+                        <select id="voice-language-selector" class="form-select form-select-sm">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी (Hindi)</option>
+                            <option value="ta">தமிழ் (Tamil)</option>
+                            <option value="te">తెలుగు (Telugu)</option>
+                            <option value="bn">বাংলা (Bengali)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="voice-controls">
+                    <button id="voice-assist-mic" class="btn btn-primary">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button id="voice-assist-help" class="btn btn-outline-secondary">
+                        <i class="fas fa-question-circle"></i> {{ translate('help') }}
+                    </button>
+                    <button id="voice-assist-cancel" class="btn btn-outline-danger">
+                        <i class="fas fa-stop"></i> {{ translate('stop') }}
+                    </button>
+                    <span id="voice-assist-speaking" class="voice-assist-speaking" style="display: none;"></span>
+                </div>
+
+                <div id="voice-assist-status" class="voice-status"></div>
+
+                <div id="voice-assistant-result" class="voice-assistant-result" style="display: none;"></div>
+
+                <div class="voice-assistant-instructions">
+                    <p>{{ translate('voice_assistant_instructions') }}</p>
+                    <p>{{ translate('voice_shortcut_info') }} <span class="shortcut-badge">Alt + M</span> {{ translate('to_activate_mic') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Suggested Queries -->
+    <div class="row mt-4">
+        <div class="col-lg-8 mx-auto">
+            <h3 class="mb-3">{{ translate('suggested_queries') }}</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ translate('soil_based_queries') }}</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-chevron-right text-primary me-2"></i> {{ translate('what_to_plant_in_sandy_soil') }}</li>
+                                <li><i class="fas fa-chevron-right text-primary me-2"></i> {{ translate('crops_for_black_soil') }}</li>
+                                <li><i class="fas fa-chevron-right text-primary me-2"></i> {{ translate('best_crops_for_clayey_soil') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ translate('seasonal_queries') }}</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-chevron-right text-primary me-2"></i> {{ translate('what_to_plant_in_rainy_season') }}</li>
+                                <li><i class="fas fa-chevron-right text-primary me-2"></i> {{ translate('winter_crop_recommendations') }}</li>
+                                <li><i class="fas fa-chevron-right text-primary me-2"></i> {{ translate('best_crops_for_summer') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+            <h3 class="mb-4">{{ translate('how_it_works') }}</h3>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-3 mb-md-0">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                <i class="fas fa-microphone fa-lg"></i>
+                            </div>
+                            <h5>{{ translate('speak') }}</h5>
+                            <p class="small">{{ translate('speak_step_description') }}</p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3 mb-md-0">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                <i class="fas fa-brain fa-lg"></i>
+                            </div>
+                            <h5>{{ translate('analyze') }}</h5>
+                            <p class="small">{{ translate('analyze_step_description') }}</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                <i class="fas fa-thumbs-up fa-lg"></i>
+                            </div>
+                            <h5>{{ translate('recommend') }}</h5>
+                            <p class="small">{{ translate('recommend_step_description') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+<script src="{{ url_for('static', filename='js/voice-assistant/voice_crop_planner.js') }}"></script>
+{% endblock %}
