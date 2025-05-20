@@ -152,62 +152,7 @@ function setupEventListeners() {
     
     // Add click event listeners to all play buttons
     document.addEventListener('click', function(event) {
-        const target = event.target.closest('.play-audio');
-        if (target) {
-            const textToRead = target.getAttribute('data-text');
-            if (textToRead) {
-                // Stop any ongoing speech
-                synth.cancel();
-                
-                // Create a new utterance
-                const utterance = new SpeechSynthesisUtterance(textToRead);
-                
-                // Set voice properties (can be customized based on user preferences)
-                utterance.rate = 1.0; // Speed of speech (0.1 to 10)
-                utterance.pitch = 1.0; // Pitch of voice (0 to 2)
-                utterance.volume = 1.0; // Volume (0 to 1)
-                
-                // Show the stop button when speaking starts
-                const stopButton = document.getElementById('stop-narration');
-                if (stopButton) {
-                    stopButton.style.display = 'block';
-                    
-                    // Event listener for when speech ends
-                    utterance.onend = function() {
-                        stopButton.style.display = 'none';
-                    };
-                }
-                
-                // Start speaking
-                synth.speak(utterance);
-                
-                // Convert play button to a stop button temporarily
-                const iconElement = target.querySelector('i');
-                if (iconElement) {
-                    iconElement.classList.remove('fa-volume-up');
-                    iconElement.classList.add('fa-stop');
-                    target.classList.add('btn-danger');
-                    target.classList.remove('btn-light');
-                    
-                    // Add a data attribute to mark it as currently playing
-                    target.setAttribute('data-playing', 'true');
-                    
-                    // When speech ends, convert back to play button
-                    utterance.onend = function() {
-                        iconElement.classList.remove('fa-stop');
-                        iconElement.classList.add('fa-volume-up');
-                        target.classList.remove('btn-danger');
-                        target.classList.add('btn-light');
-                        target.removeAttribute('data-playing');
-                        if (stopButton) {
-                            stopButton.style.display = 'none';
-                        }
-                    };
-                }
-            }
-        }
-        
-        // Check if this is a playing button that needs to be stopped
+        // First check if this is a playing button that needs to be stopped
         if (event.target.closest('.play-audio[data-playing="true"]')) {
             synth.cancel(); // Stop any ongoing speech
             
@@ -229,7 +174,63 @@ function setupEventListeners() {
             }
             
             // Prevent the click from triggering another narration
+            event.preventDefault();
             event.stopPropagation();
+            return;
+        }
+        
+        // Otherwise check if this is a play button that needs to start narration
+        const target = event.target.closest('.play-audio');
+        if (target && !target.hasAttribute('data-playing')) {
+            const textToRead = target.getAttribute('data-text');
+            if (textToRead) {
+                // Stop any ongoing speech
+                synth.cancel();
+                
+                // Create a new utterance
+                const utterance = new SpeechSynthesisUtterance(textToRead);
+                
+                // Set voice properties (can be customized based on user preferences)
+                utterance.rate = 1.0; // Speed of speech (0.1 to 10)
+                utterance.pitch = 1.0; // Pitch of voice (0 to 2)
+                utterance.volume = 1.0; // Volume (0 to 1)
+                
+                // Show the stop button when speaking starts
+                const stopButton = document.getElementById('stop-narration');
+                if (stopButton) {
+                    stopButton.style.display = 'block';
+                }
+                
+                // Convert play button to a stop button temporarily
+                const iconElement = target.querySelector('i');
+                if (iconElement) {
+                    iconElement.classList.remove('fa-volume-up');
+                    iconElement.classList.add('fa-stop');
+                    target.classList.add('btn-danger');
+                    target.classList.remove('btn-light');
+                    
+                    // Add a data attribute to mark it as currently playing
+                    target.setAttribute('data-playing', 'true');
+                }
+                
+                // When speech ends, convert back to play button
+                utterance.onend = function() {
+                    if (iconElement) {
+                        iconElement.classList.remove('fa-stop');
+                        iconElement.classList.add('fa-volume-up');
+                        target.classList.remove('btn-danger');
+                        target.classList.add('btn-light');
+                        target.removeAttribute('data-playing');
+                    }
+                    
+                    if (stopButton) {
+                        stopButton.style.display = 'none';
+                    }
+                };
+                
+                // Start speaking
+                synth.speak(utterance);
+            }
         }
     });
     
