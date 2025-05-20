@@ -22,58 +22,58 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header bg-success text-white">
-                <h3 class="mb-0"><i class="fas fa-seedling me-2"></i>Crop Recommendation System</h3>
+                <h3 class="mb-0"><i class="fas fa-seedling me-2"></i>{{ translate('crop_recommendation_system') }}</h3>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p class="lead">Enter your soil parameters and climate conditions to get AI-powered crop recommendations suitable for your farm.</p>
+                        <p class="lead">{{ translate('crop_recommendation_description') }}</p>
                         
                         <div class="alert alert-info" role="alert">
-                            <i class="fas fa-info-circle me-2"></i>For best results, use recent soil test results if available. The more accurate your input data, the better our recommendations will be.
+                            <i class="fas fa-info-circle me-2"></i>{{ translate('soil_test_info') }}
                         </div>
                         
                         <form method="POST" action="{{ url_for('crop_recommendation') }}" id="cropRecommendationForm">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label for="nitrogen" class="form-label">Nitrogen (N) content in soil (mg/kg)</label>
-                                    <input type="number" class="form-control" id="nitrogen" name="nitrogen" required min="0" max="500" step="0.01" placeholder="e.g., 40">
+                                    <label for="nitrogen" class="form-label">{{ translate('nitrogen_content_label') }}</label>
+                                    <input type="number" class="form-control" id="nitrogen" name="nitrogen" required min="0" max="500" step="0.01" placeholder="{{ translate('nitrogen_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="phosphorus" class="form-label">Phosphorus (P) content in soil (mg/kg)</label>
-                                    <input type="number" class="form-control" id="phosphorus" name="phosphorus" required min="0" max="500" step="0.01" placeholder="e.g., 35">
+                                    <label for="phosphorus" class="form-label">{{ translate('phosphorus_content_label') }}</label>
+                                    <input type="number" class="form-control" id="phosphorus" name="phosphorus" required min="0" max="500" step="0.01" placeholder="{{ translate('phosphorus_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="potassium" class="form-label">Potassium (K) content in soil (mg/kg)</label>
-                                    <input type="number" class="form-control" id="potassium" name="potassium" required min="0" max="500" step="0.01" placeholder="e.g., 45">
+                                    <label for="potassium" class="form-label">{{ translate('potassium_content_label') }}</label>
+                                    <input type="number" class="form-control" id="potassium" name="potassium" required min="0" max="500" step="0.01" placeholder="{{ translate('potassium_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="temperature" class="form-label">Temperature (°C)</label>
-                                    <input type="number" class="form-control" id="temperature" name="temperature" required min="0" max="50" step="0.1" placeholder="e.g., 28">
+                                    <label for="temperature" class="form-label">{{ translate('temperature_content_label') }}</label>
+                                    <input type="number" class="form-control" id="temperature" name="temperature" required min="0" max="50" step="0.1" placeholder="{{ translate('temperature_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="humidity" class="form-label">Humidity (%)</label>
-                                    <input type="number" class="form-control" id="humidity" name="humidity" required min="0" max="100" step="0.1" placeholder="e.g., 65">
+                                    <label for="humidity" class="form-label">{{ translate('humidity_content_label') }}</label>
+                                    <input type="number" class="form-control" id="humidity" name="humidity" required min="0" max="100" step="0.1" placeholder="{{ translate('humidity_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="ph" class="form-label">pH value</label>
-                                    <input type="number" class="form-control" id="ph" name="ph" required min="0" max="14" step="0.1" placeholder="e.g., 6.5">
+                                    <label for="ph" class="form-label">{{ translate('ph_content_label') }}</label>
+                                    <input type="number" class="form-control" id="ph" name="ph" required min="0" max="14" step="0.1" placeholder="{{ translate('ph_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="rainfall" class="form-label">Rainfall (mm)</label>
-                                    <input type="number" class="form-control" id="rainfall" name="rainfall" required min="0" max="5000" step="0.1" placeholder="e.g., 120">
+                                    <label for="rainfall" class="form-label">{{ translate('rainfall_content_label') }}</label>
+                                    <input type="number" class="form-control" id="rainfall" name="rainfall" required min="0" max="5000" step="0.1" placeholder="{{ translate('rainfall_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-12 mt-4">
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-success">
-                                            <i class="fas fa-search me-2"></i>Get Crop Recommendation
+                                            <i class="fas fa-search me-2"></i>{{ translate('get_crop_recommendation') }}
                                         </button>
                                     </div>
                                 </div>
@@ -89,23 +89,23 @@
                         {% if prediction %}
                         <div class="recommended-crop">
                             <h4 class="text-success mb-3">
-                                <i class="fas fa-leaf me-2"></i>Recommended Crop: {{ prediction }}
+                                <i class="fas fa-leaf me-2"></i>{{ translate('recommended_crop_label') }}: {{ prediction }}
                             </h4>
                             
-                            <p>Based on your soil parameters and climate conditions, we recommend growing <strong>{{ prediction }}</strong> for optimal yield.</p>
+                            <p>{{ translate('crop_recommendation_result_text') }} <strong>{{ prediction }}</strong> {{ translate('for_optimal_yield') }}.</p>
                             
                             <div class="mt-3">
-                                <h5>Why this crop?</h5>
+                                <h5>{{ translate('why_this_crop') }}</h5>
                                 <ul>
-                                    <li>Suitable for your soil's nutrient profile (N: {{ request.form.get('nitrogen') }}, P: {{ request.form.get('phosphorus') }}, K: {{ request.form.get('potassium') }})</li>
-                                    <li>Compatible with your local climate conditions (Temperature: {{ request.form.get('temperature') }}°C, Humidity: {{ request.form.get('humidity') }}%)</li>
-                                    <li>Appropriate for your soil pH ({{ request.form.get('ph') }}) and rainfall patterns ({{ request.form.get('rainfall') }} mm)</li>
+                                    <li>{{ translate('suitable_soil_nutrients') }} (N: {{ request.form.get('nitrogen') }}, P: {{ request.form.get('phosphorus') }}, K: {{ request.form.get('potassium') }})</li>
+                                    <li>{{ translate('compatible_climate') }} ({{ translate('temperature') }}: {{ request.form.get('temperature') }}°C, {{ translate('humidity') }}: {{ request.form.get('humidity') }}%)</li>
+                                    <li>{{ translate('appropriate_ph_rainfall') }} ({{ translate('ph') }}: {{ request.form.get('ph') }}) {{ translate('and') }} {{ translate('rainfall') }}: ({{ request.form.get('rainfall') }} mm)</li>
                                 </ul>
                             </div>
                             
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
                                 <a href="{{ url_for('fertilizer_recommendation') }}" class="btn btn-outline-primary">
-                                    <i class="fas fa-flask me-2"></i>Get Fertilizer Recommendations
+                                    <i class="fas fa-flask me-2"></i>{{ translate('get_fertilizer_recommendations') }}
                                 </a>
                             </div>
                         </div>
@@ -116,25 +116,25 @@
                         {% else %}
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">How It Works</h5>
+                                <h5 class="card-title">{{ translate('how_it_works') }}</h5>
                                 <ol>
-                                    <li>Enter your soil's nutrient levels (N, P, K)</li>
-                                    <li>Add environmental parameters (temperature, humidity, pH, rainfall)</li>
-                                    <li>Our AI model analyzes your data</li>
-                                    <li>Get a recommendation for the most suitable crop</li>
+                                    <li>{{ translate('enter_nutrients') }}</li>
+                                    <li>{{ translate('add_environmental_parameters') }}</li>
+                                    <li>{{ translate('ai_analyzes_data') }}</li>
+                                    <li>{{ translate('get_recommendation') }}</li>
                                 </ol>
-                                <p>The model is trained on extensive agricultural data from across different regions of India.</p>
+                                <p>{{ translate('model_training_info') }}</p>
                             </div>
                         </div>
                         
                         <div class="card mt-3">
                             <div class="card-body">
-                                <h5 class="card-title">Where to get soil parameters?</h5>
+                                <h5 class="card-title">{{ translate('where_to_get_soil_parameters') }}</h5>
                                 <ul>
-                                    <li>Local agricultural extension centers</li>
-                                    <li>Mobile soil testing labs</li>
-                                    <li>Krishi Vigyan Kendras (KVKs)</li>
-                                    <li>Home testing kits (less accurate but helpful)</li>
+                                    <li>{{ translate('local_agricultural_centers') }}</li>
+                                    <li>{{ translate('mobile_soil_testing') }}</li>
+                                    <li>{{ translate('krishi_vigyan_kendras') }}</li>
+                                    <li>{{ translate('home_testing_kits') }}</li>
                                 </ul>
                             </div>
                         </div>
