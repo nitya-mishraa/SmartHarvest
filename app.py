@@ -389,7 +389,7 @@ def delete_task(task_id):
     return redirect(url_for('task_planner'))
 
 # Knowledge Hub Route
-@app.route('/knowledge-hub')
+@app.route('/knowledge_hub')
 def knowledge_hub():
     return render_template('knowledge_hub.html')
 
