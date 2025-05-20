@@ -422,11 +422,6 @@ def set_language():
 
 # Knowledge Hub content is included directly in the knowledge_hub route
 
-# Voice-enabled Crop Planner route
-@app.route('/voice_crop_planner')
-def voice_crop_planner():
-    return render_template('voice_crop_planner.html')
-
 # Add translation helper to all templates
 @app.context_processor
 def inject_language_helper():
