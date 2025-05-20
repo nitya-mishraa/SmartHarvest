@@ -49,24 +49,31 @@ function addPlayButtonsToModals() {
                     // Get paragraphs and headings for a more complete narration
                     let contentToRead = '';
                     
-                    // Add first paragraph
-                    if (modalBody.querySelector('p')) {
-                        contentToRead += modalBody.querySelector('p').textContent.trim();
-                    }
+                    // Add all paragraphs
+                    modalBody.querySelectorAll('p').forEach(para => {
+                        contentToRead += ' ' + para.textContent.trim();
+                    });
                     
-                    // Add subheadings and their content (limited to avoid overly long narration)
+                    // Add subheadings and all their content
                     const subheadings = modalBody.querySelectorAll('h4, h5');
-                    subheadings.forEach((heading, index) => {
-                        // Limit to first 3 subheadings to keep narration length reasonable
-                        if (index < 3) {
-                            contentToRead += ' ' + heading.textContent.trim() + '. ';
-                            
-                            // Add first paragraph after this heading if available
-                            const nextElem = heading.nextElementSibling;
-                            if (nextElem && nextElem.tagName === 'P') {
-                                contentToRead += nextElem.textContent.trim();
+                    subheadings.forEach(heading => {
+                        contentToRead += ' ' + heading.textContent.trim() + '. ';
+                        
+                        // Find all elements after this heading until the next heading or until the end
+                        let nextElem = heading.nextElementSibling;
+                        while (nextElem && !['H4', 'H5'].includes(nextElem.tagName)) {
+                            if (nextElem.textContent && nextElem.textContent.trim() !== '') {
+                                contentToRead += ' ' + nextElem.textContent.trim();
                             }
+                            nextElem = nextElem.nextElementSibling;
                         }
+                    });
+                    
+                    // Add list items
+                    modalBody.querySelectorAll('ul, ol').forEach(list => {
+                        list.querySelectorAll('li').forEach(item => {
+                            contentToRead += ' ' + item.textContent.trim() + '.';
+                        });
                     });
                     
                     // Combine title with content
@@ -96,11 +103,38 @@ function addPlayButtonsToModals() {
                 const contentArea = section ? (section.querySelector('.card-body') || section) : null;
                 
                 if (contentArea) {
-                    // Create text to be read (title + first paragraph of content)
+                    // Create text to be read (title + all content)
                     const titleText = title.textContent.trim();
-                    const firstParagraph = contentArea.querySelector('p') ? 
-                        contentArea.querySelector('p').textContent.trim() : '';
-                    const textToRead = titleText + '. ' + firstParagraph;
+                    
+                    // Build full content string with all text elements
+                    let fullContent = '';
+                    
+                    // Add all paragraphs
+                    contentArea.querySelectorAll('p').forEach(para => {
+                        fullContent += ' ' + para.textContent.trim();
+                    });
+                    
+                    // Add all list items
+                    contentArea.querySelectorAll('li').forEach(item => {
+                        fullContent += ' ' + item.textContent.trim() + '.';
+                    });
+                    
+                    // Add all other headings and content
+                    contentArea.querySelectorAll('h3, h4, h5, h6').forEach(heading => {
+                        fullContent += ' ' + heading.textContent.trim() + '. ';
+                        
+                        // Find content after this heading until next heading
+                        let nextElem = heading.nextElementSibling;
+                        while (nextElem && !['H3', 'H4', 'H5', 'H6'].includes(nextElem.tagName)) {
+                            if (nextElem.textContent && nextElem.textContent.trim() !== '' &&
+                                !nextElem.querySelector('li')) { // Skip list containers as we get items directly
+                                fullContent += ' ' + nextElem.textContent.trim();
+                            }
+                            nextElem = nextElem.nextElementSibling;
+                        }
+                    });
+                    
+                    const textToRead = titleText + '. ' + fullContent;
                     
                     // Create play button container
                     const btnContainer = document.createElement('div');
