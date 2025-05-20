@@ -73,20 +73,20 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label for="task_date" class="form-label">Task Date</label>
+                                <label for="task_date" class="form-label">{{ translate('task_date') }}</label>
                                 <input type="date" class="form-control" id="task_date" name="task_date" required>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="task_type" class="form-label">Task Type</label>
+                                <label for="task_type" class="form-label">{{ translate('task_type') }}</label>
                                 <select class="form-select" id="task_type" name="task_type" required>
-                                    <option value="" selected disabled>Select task type</option>
-                                    <option value="irrigation">Irrigation</option>
-                                    <option value="fertilizing">Fertilizing</option>
-                                    <option value="harvesting">Harvesting</option>
-                                    <option value="sowing">Sowing</option>
-                                    <option value="pesticide">Pesticide Application</option>
-                                    <option value="other">Other</option>
+                                    <option value="" selected disabled>{{ translate('select_task_type') }}</option>
+                                    <option value="irrigation">{{ translate('irrigation') }}</option>
+                                    <option value="fertilizing">{{ translate('fertilizing') }}</option>
+                                    <option value="harvesting">{{ translate('harvesting') }}</option>
+                                    <option value="sowing">{{ translate('sowing') }}</option>
+                                    <option value="pesticide">{{ translate('pesticide') }}</option>
+                                    <option value="other">{{ translate('other') }}</option>
                                 </select>
                             </div>
                             
