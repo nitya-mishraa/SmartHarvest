@@ -67,7 +67,7 @@ class FertilizerRecommendation(db.Model):
     phosphorus = db.Column(db.Float, nullable=False)
     potassium = db.Column(db.Float, nullable=False)
     crop_type = db.Column(db.String(100), nullable=False)
-    recommended_fertilizer = db.Column(db.String(100), nullable=False)
+    recommended_fertilizer = db.Column(db.Text, nullable=False)  # Changed to Text type for longer recommendations
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def __repr__(self):
