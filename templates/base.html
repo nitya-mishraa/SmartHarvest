@@ -14,6 +14,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/agri_saarthi_logo.jpg') }}" type="image/jpeg">
+    
     <!-- Page-specific CSS -->
     {% block additional_css %}{% endblock %}
 </head>
@@ -22,7 +25,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="{{ url_for('index') }}">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='images/agri_saarthi_logo.jpg') }}" alt="AgriSaarthi Logo" width="40" height="40" class="me-2 rounded-circle">
                     <span class="text-success">Agri</span><span class="text-primary">Saarthi</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
