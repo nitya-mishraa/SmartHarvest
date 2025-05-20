@@ -180,7 +180,56 @@ function setupEventListeners() {
                 
                 // Start speaking
                 synth.speak(utterance);
+                
+                // Convert play button to a stop button temporarily
+                const iconElement = target.querySelector('i');
+                if (iconElement) {
+                    iconElement.classList.remove('fa-volume-up');
+                    iconElement.classList.add('fa-stop');
+                    target.classList.add('btn-danger');
+                    target.classList.remove('btn-light');
+                    
+                    // Add a data attribute to mark it as currently playing
+                    target.setAttribute('data-playing', 'true');
+                    
+                    // When speech ends, convert back to play button
+                    utterance.onend = function() {
+                        iconElement.classList.remove('fa-stop');
+                        iconElement.classList.add('fa-volume-up');
+                        target.classList.remove('btn-danger');
+                        target.classList.add('btn-light');
+                        target.removeAttribute('data-playing');
+                        if (stopButton) {
+                            stopButton.style.display = 'none';
+                        }
+                    };
+                }
             }
+        }
+        
+        // Check if this is a playing button that needs to be stopped
+        if (event.target.closest('.play-audio[data-playing="true"]')) {
+            synth.cancel(); // Stop any ongoing speech
+            
+            // Reset the button appearance
+            const playingButton = event.target.closest('.play-audio[data-playing="true"]');
+            const iconElement = playingButton.querySelector('i');
+            if (iconElement) {
+                iconElement.classList.remove('fa-stop');
+                iconElement.classList.add('fa-volume-up');
+                playingButton.classList.remove('btn-danger');
+                playingButton.classList.add('btn-light');
+                playingButton.removeAttribute('data-playing');
+            }
+            
+            // Hide the global stop button
+            const stopButton = document.getElementById('stop-narration');
+            if (stopButton) {
+                stopButton.style.display = 'none';
+            }
+            
+            // Prevent the click from triggering another narration
+            event.stopPropagation();
         }
     });
     
@@ -190,8 +239,45 @@ function setupEventListeners() {
         stopButton.addEventListener('click', function() {
             synth.cancel(); // Stop any ongoing speech
             stopButton.style.display = 'none';
+            
+            // Reset all playing buttons
+            document.querySelectorAll('.play-audio[data-playing="true"]').forEach(button => {
+                const iconElement = button.querySelector('i');
+                if (iconElement) {
+                    iconElement.classList.remove('fa-stop');
+                    iconElement.classList.add('fa-volume-up');
+                    button.classList.remove('btn-danger');
+                    button.classList.add('btn-light');
+                    button.removeAttribute('data-playing');
+                }
+            });
         });
     }
+    
+    // Add ESC key handler to stop narration
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            synth.cancel(); // Stop any ongoing speech
+            
+            // Reset all playing buttons
+            document.querySelectorAll('.play-audio[data-playing="true"]').forEach(button => {
+                const iconElement = button.querySelector('i');
+                if (iconElement) {
+                    iconElement.classList.remove('fa-stop');
+                    iconElement.classList.add('fa-volume-up');
+                    button.classList.remove('btn-danger');
+                    button.classList.add('btn-light');
+                    button.removeAttribute('data-playing');
+                }
+            });
+            
+            // Hide the global stop button
+            const stopButton = document.getElementById('stop-narration');
+            if (stopButton) {
+                stopButton.style.display = 'none';
+            }
+        }
+    });
 }
 
 /**
