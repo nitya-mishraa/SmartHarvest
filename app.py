@@ -420,6 +420,8 @@ def set_language():
     session['language'] = language
     return redirect(request.referrer or url_for('index'))
 
+# Knowledge Hub content is included directly in the knowledge_hub route
+
 # Add translation helper to all templates
 @app.context_processor
 def inject_language_helper():
