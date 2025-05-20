@@ -91,13 +91,13 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label for="task_details" class="form-label">Task Details</label>
-                                <textarea class="form-control" id="task_details" name="task_details" rows="3" placeholder="Add detailed information about the task"></textarea>
+                                <label for="task_details" class="form-label">{{ translate('task_details') }}</label>
+                                <textarea class="form-control" id="task_details" name="task_details" rows="3" placeholder="{{ translate('task_details_placeholder') }}"></textarea>
                             </div>
                             
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-info text-white">
-                                    <i class="fas fa-plus me-2"></i>Add Task
+                                    <i class="fas fa-plus me-2"></i>{{ translate('add_task') }}
                                 </button>
                             </div>
                         </form>
@@ -114,20 +114,20 @@
                             </div>
                             
                             <div class="col-12">
-                                <h4 class="mb-3">Upcoming Tasks</h4>
+                                <h4 class="mb-3">{{ translate('upcoming_tasks') }}</h4>
                                 
                                 <!-- Filter and Task List -->
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="taskSearch" placeholder="Search tasks...">
+                                        <input type="text" class="form-control" id="taskSearch" placeholder="{{ translate('search_tasks') }}">
                                         <select class="form-select" id="taskTypeFilter" style="max-width: 200px;">
-                                            <option value="all">All Types</option>
-                                            <option value="irrigation">Irrigation</option>
-                                            <option value="fertilizing">Fertilizing</option>
-                                            <option value="harvesting">Harvesting</option>
-                                            <option value="sowing">Sowing</option>
-                                            <option value="pesticide">Pesticide</option>
-                                            <option value="other">Other</option>
+                                            <option value="all">{{ translate('all_types') }}</option>
+                                            <option value="irrigation">{{ translate('irrigation') }}</option>
+                                            <option value="fertilizing">{{ translate('fertilizing') }}</option>
+                                            <option value="harvesting">{{ translate('harvesting') }}</option>
+                                            <option value="sowing">{{ translate('sowing') }}</option>
+                                            <option value="pesticide">{{ translate('pesticide') }}</option>
+                                            <option value="other">{{ translate('other') }}</option>
                                         </select>
                                         <select class="form-select" id="taskStatusFilter" style="max-width: 200px;">
                                             <option value="all">All Status</option>
