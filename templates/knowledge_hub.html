@@ -553,9 +553,9 @@
                     <div class="card-body">
                         <h5 class="card-title"><i class="fas fa-link text-success me-2"></i>Useful Links</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="#" class="text-decoration-none">Indian Agricultural Research Institute</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none">National Bank for Agriculture and Rural Development</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none">Farmers' Portal - Government of India</a></li>
+                            <li class="list-group-item"><a href="https://iari.res.in/" target="_blank" class="text-decoration-none">Indian Agricultural Research Institute</a></li>
+                            <li class="list-group-item"><a href="https://www.nabard.org/" target="_blank" class="text-decoration-none">National Bank for Agriculture and Rural Development</a></li>
+                            <li class="list-group-item"><a href="https://farmer.gov.in/" target="_blank" class="text-decoration-none">Farmers' Portal - Government of India</a></li>
                         </ul>
                     </div>
                 </div>
@@ -2446,14 +2446,181 @@
 </div>
 
 <!-- Crop Rotation Modal -->
+<div class="modal fade" id="cropRotationModal" tabindex="-1" aria-labelledby="cropRotationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h5 class="modal-title" id="cropRotationModalLabel">Crop Rotation Benefits and Techniques</h5>
+            <div class="modal-header bg-success text-white d-flex justify-content-between align-items-center">
+                <h5 class="modal-title" id="cropRotationModalLabel">Crop Rotation Techniques</h5>
                 <div class="d-flex">
-                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Crop Rotation Benefits and Techniques. Learn about the practice of growing different types of crops in the same area across a sequence of growing seasons. This guide explains how crop rotation improves soil health, reduces pests, and increases crop yields.">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Crop Rotation Techniques. This guide explains effective crop rotation strategies to improve soil health, prevent pest and disease build-up, and maximize yields across different growing seasons.">
                         <i class="fas fa-volume-up"></i>
                     </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4>Principles and Benefits of Crop Rotation</h4>
+                <p>Crop rotation is the practice of growing different types of crops in sequence on the same land to improve soil health, optimize nutrients, and combat pest and disease problems.</p>
+                
+                <div class="alert alert-success mb-4">
+                    <p><strong>Key Benefits:</strong></p>
+                    <ul class="mb-0">
+                        <li>Reduces buildup of pathogens and pests that affect specific crop families</li>
+                        <li>Improves soil structure and fertility</li>
+                        <li>Helps manage problematic weeds</li>
+                        <li>Reduces dependency on synthetic fertilizers</li>
+                        <li>Minimizes erosion risks</li>
+                        <li>Increases biodiversity on the farm</li>
+                    </ul>
+                </div>
+                
+                <h5>Basic Rotation Principles</h5>
+                <ol>
+                    <li><strong>Alternate demanding and less-demanding crops:</strong> Follow heavy feeders (like corn) with light feeders (like beans)</li>
+                    <li><strong>Incorporate nitrogen-fixing crops:</strong> Include legumes to add nitrogen back to soil</li>
+                    <li><strong>Vary root structures:</strong> Alternate between deep and shallow-rooted plants</li>
+                    <li><strong>Consider plant families:</strong> Avoid planting crops from the same family in succession</li>
+                    <li><strong>Include cover crops:</strong> Use green manures between main crops to protect and enrich soil</li>
+                </ol>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Common Plant Families for Rotation Planning</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Family</th>
+                                        <th>Common Crops</th>
+                                        <th>Characteristics</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Solanaceae (Nightshade)</td>
+                                        <td>Tomatoes, Potatoes, Eggplant, Peppers</td>
+                                        <td>Heavy feeders, susceptible to similar diseases</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fabaceae (Legume)</td>
+                                        <td>Beans, Peas, Lentils, Chickpeas</td>
+                                        <td>Nitrogen-fixing, improve soil fertility</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brassicaceae (Crucifer)</td>
+                                        <td>Cabbage, Cauliflower, Broccoli, Mustard</td>
+                                        <td>Heavy feeders, good for pest suppression</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Poaceae (Grass)</td>
+                                        <td>Corn, Wheat, Rice, Millets</td>
+                                        <td>Heavy feeders, extensive root systems</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cucurbitaceae (Gourd)</td>
+                                        <td>Cucumber, Squash, Melons, Pumpkins</td>
+                                        <td>Heavy feeders, sprawling growth habit</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5>Sample Rotation Plans</h5>
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">Three-Year Rotation (Basic)</h6>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Year 1:</strong> Legumes (beans, peas) - add nitrogen to soil</p>
+                                <p><strong>Year 2:</strong> Leafy crops (cabbage, spinach) - use nitrogen</p>
+                                <p><strong>Year 3:</strong> Root crops (carrots, onions) - reduce pests</p>
+                                <p class="small text-muted">Then return to Year 1</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">Four-Year Rotation (Comprehensive)</h6>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Year 1:</strong> Legumes (peas, beans)</p>
+                                <p><strong>Year 2:</strong> Brassicas (cabbage, cauliflower)</p>
+                                <p><strong>Year 3:</strong> Alliums (onions, garlic)</p>
+                                <p><strong>Year 4:</strong> Solanaceae (tomatoes, potatoes)</p>
+                                <p class="small text-muted">With cover crops between main plantings</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5>Regional Rotation Considerations in India</h5>
+                
+                <div class="accordion mb-4" id="rotationAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#northIndia" aria-expanded="false">
+                                North India
+                            </button>
+                        </h2>
+                        <div id="northIndia" class="accordion-collapse collapse" data-bs-parent="#rotationAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Common Rotation:</strong> Wheat (Rabi) → Rice (Kharif)</p>
+                                <p><strong>Enhanced Rotation:</strong> Wheat → Mung Bean/Cowpea → Rice → Mustard</p>
+                                <p><strong>Benefits:</strong> Including legumes and oilseeds breaks pest cycles and improves soil structure while maintaining food security crops.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#southIndia" aria-expanded="false">
+                                South India
+                            </button>
+                        </h2>
+                        <div id="southIndia" class="accordion-collapse collapse" data-bs-parent="#rotationAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Common Rotation:</strong> Rice (Kharif) → Rice (Rabi)</p>
+                                <p><strong>Enhanced Rotation:</strong> Rice → Pulses (Black Gram/Green Gram) → Vegetables → Rice</p>
+                                <p><strong>Benefits:</strong> Reduces disease pressure in rice, improves soil fertility with legumes, and provides dietary diversity.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#centralIndia" aria-expanded="false">
+                                Central India
+                            </button>
+                        </h2>
+                        <div id="centralIndia" class="accordion-collapse collapse" data-bs-parent="#rotationAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Common Rotation:</strong> Cotton → Wheat</p>
+                                <p><strong>Enhanced Rotation:</strong> Cotton → Chickpea → Sorghum/Maize → Soybean</p>
+                                <p><strong>Benefits:</strong> Breaks the cycle of cotton pests, adds nitrogen through legumes, and includes drought-tolerant crops for resilience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-warning">
+                    <p><strong>Implementation Tip:</strong> Start with a simple rotation plan and expand as you gain experience. Document results each season to refine your approach based on your specific soil conditions and climate patterns.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
             </div>
