@@ -305,7 +305,7 @@
                                     <span class="tag">Seasonal Planning</span>
                                     <span class="tag">All Regions</span>
                                 </div>
-                                <a href="#" class="btn btn-sm btn-outline-primary">View Guide</a>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#cropSeasonalModal">View Guide</button>
                             </div>
                         </div>
                     </div>
@@ -326,7 +326,7 @@
                                     <span class="tag">Sustainable Farming</span>
                                     <span class="tag">Intermediate</span>
                                 </div>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#cropRotationModal">Read More</button>
                             </div>
                         </div>
                     </div>
@@ -1040,6 +1040,211 @@
                 
                 <div class="alert alert-primary">
                     <p>For maximum benefit, combine soil testing with proper field history records and crop performance documentation.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Crop Seasonal Modal -->
+<div class="modal fade" id="cropSeasonalModal" tabindex="-1" aria-labelledby="cropSeasonalModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="cropSeasonalModalLabel">Seasonal Crop Planning Guide</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Understanding Crop Seasons in India</h4>
+                <p>India's agricultural calendar is primarily divided into three growing seasons, each with specific characteristics and suitable crops.</p>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Kharif Season (Monsoon Crop)</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Time Period:</strong> June to October (monsoon season)</p>
+                        <p><strong>Key Characteristics:</strong></p>
+                        <ul>
+                            <li>Relies heavily on monsoon rainfall</li>
+                            <li>Requires warm, wet weather for good growth</li>
+                            <li>Harvested typically by September-October</li>
+                        </ul>
+                        <p><strong>Major Crops:</strong> Rice, maize, jowar, bajra, cotton, groundnut, soybean, turmeric, sugarcane</p>
+                        <p><strong>Planning Tips:</strong></p>
+                        <ul>
+                            <li>Prepare fields in April-May before monsoon arrives</li>
+                            <li>Ensure proper drainage systems are in place for heavy rainfall</li>
+                            <li>Consider crop varieties with disease resistance for humid conditions</li>
+                            <li>Plan for pest management specific to monsoon season</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Rabi Season (Winter Crop)</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Time Period:</strong> October to March</p>
+                        <p><strong>Key Characteristics:</strong></p>
+                        <ul>
+                            <li>Crops sown at the end of monsoon or beginning of winter</li>
+                            <li>Relies on residual moisture in the soil or irrigation</li>
+                            <li>Harvested in spring (February-March)</li>
+                        </ul>
+                        <p><strong>Major Crops:</strong> Wheat, barley, mustard, gram, peas, oats, linseed</p>
+                        <p><strong>Planning Tips:</strong></p>
+                        <ul>
+                            <li>Plan irrigation schedule based on crop water requirements</li>
+                            <li>Consider frost protection measures for sensitive crops</li>
+                            <li>Implement cold-weather pest management strategies</li>
+                            <li>Time harvesting to avoid spring heat</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Zaid Season (Summer Crop)</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Time Period:</strong> March to June</p>
+                        <p><strong>Key Characteristics:</strong></p>
+                        <ul>
+                            <li>Short growing season between Rabi and Kharif</li>
+                            <li>Requires irrigation as it occurs during dry period</li>
+                            <li>Heat-tolerant crops are ideal</li>
+                        </ul>
+                        <p><strong>Major Crops:</strong> Watermelon, cucumber, vegetables, fodder crops, short-duration pulses like moong and urad</p>
+                        <p><strong>Planning Tips:</strong></p>
+                        <ul>
+                            <li>Choose drought-resistant and heat-tolerant varieties</li>
+                            <li>Ensure adequate irrigation is available</li>
+                            <li>Consider mulching to reduce water loss</li>
+                            <li>Plan for quick harvest before monsoon begins</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Regional Variations in Crop Planning</h4>
+                <p>India's diverse climate zones require region-specific crop planning:</p>
+                <ul>
+                    <li><strong>Northern Plains:</strong> Focus on wheat-rice rotation, with mustard, sugarcane, and potatoes as important commercial crops</li>
+                    <li><strong>Eastern India:</strong> Rice dominant with multiple cropping patterns; jute as an important cash crop</li>
+                    <li><strong>Western India:</strong> Drought-resistant crops like bajra, jowar, cotton, and groundnut are important</li>
+                    <li><strong>Southern Peninsula:</strong> Rice, coconut, spices, coffee, and rubber thrive in the tropical conditions</li>
+                    <li><strong>Central Highlands:</strong> Soybeans, pulses, and cotton are major commercial crops</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Crop Rotation Modal -->
+<div class="modal fade" id="cropRotationModal" tabindex="-1" aria-labelledby="cropRotationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="cropRotationModalLabel">Crop Rotation Benefits and Techniques</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Understanding Crop Rotation</h4>
+                <p>Crop rotation is the practice of growing different types of crops in the same area across a sequence of growing seasons. It is one of the oldest and most effective cultural control strategies for sustainable farming.</p>
+                
+                <div class="alert alert-success">
+                    <p><strong>Key Principle:</strong> Different crops have different nutrient needs and susceptibility to pests and diseases. By rotating crops, you break pest cycles and optimize soil nutrient use.</p>
+                </div>
+                
+                <h4 class="mt-4">Major Benefits of Crop Rotation</h4>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3 h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Soil Health Benefits</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>Improves soil structure</strong> through different root systems</li>
+                                    <li><strong>Increases soil organic matter</strong> with diverse crop residues</li>
+                                    <li><strong>Reduces soil erosion</strong> by keeping soil covered</li>
+                                    <li><strong>Enhances soil biodiversity</strong> supporting beneficial organisms</li>
+                                    <li><strong>Optimizes nutrient cycling</strong> and reduces fertilizer needs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3 h-100">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Pest Management Benefits</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>Breaks pest and disease cycles</strong> by removing host plants</li>
+                                    <li><strong>Reduces weed pressure</strong> through varied competition</li>
+                                    <li><strong>Decreases reliance on pesticides</strong> and chemical inputs</li>
+                                    <li><strong>Promotes beneficial insect populations</strong> for natural pest control</li>
+                                    <li><strong>Manages crop-specific nematodes</strong> and soil-borne diseases</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Effective Crop Rotation Strategies for Indian Farmers</h4>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Basic Rotation Principles</h5>
+                    </div>
+                    <div class="card-body">
+                        <ol>
+                            <li><strong>Alternate nutrient demands:</strong> Follow heavy feeders (like corn) with light feeders or soil-builders (like legumes)</li>
+                            <li><strong>Vary root depths:</strong> Alternate deep-rooted crops (cotton) with shallow-rooted crops (leafy vegetables)</li>
+                            <li><strong>Include legumes:</strong> Include nitrogen-fixing crops in your rotation</li>
+                            <li><strong>Alternate plant families:</strong> Don't plant crops from the same family consecutively</li>
+                            <li><strong>Consider market demands:</strong> Balance soil-building crops with profitable cash crops</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Successful Rotation Examples in Indian Agriculture</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Rice-Wheat Rotation:</strong> Common in Indo-Gangetic plains, can be improved by adding a legume as third crop</li>
+                            <li><strong>Cotton-Based Rotation:</strong> Cotton followed by chickpea or other pulse crops</li>
+                            <li><strong>Sugarcane-Based Rotation:</strong> Sugarcane (18 months) followed by legumes or vegetables</li>
+                            <li><strong>Vegetable Rotations:</strong> Following leaf crops with fruit crops then root crops</li>
+                            <li><strong>Agroforestry Rotations:</strong> Incorporating tree crops in long-term rotations</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4">Planning Your Crop Rotation</h4>
+                <p>Consider these factors when planning your rotation:</p>
+                <ul>
+                    <li>Local climate and growing seasons</li>
+                    <li>Soil type and current soil health</li>
+                    <li>Available irrigation</li>
+                    <li>Market demand and prices</li>
+                    <li>Common pests and diseases in your area</li>
+                    <li>Labor and machinery constraints</li>
+                </ul>
+                
+                <div class="alert alert-primary">
+                    <p><strong>Remember:</strong> A good rotation balances immediate economic returns with long-term soil health. Even simple two-crop rotations are better than continuous monocropping.</p>
                 </div>
             </div>
             <div class="modal-footer">
