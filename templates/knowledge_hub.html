@@ -457,7 +457,7 @@
             <div id="collapseEquipment" class="accordion-collapse collapse" data-bs-parent="#knowledgeAccordion">
                 <div class="accordion-body">
                     <p class="lead">Content about farming equipment will be displayed here when expanded.</p>
-                    <a href="#" class="btn btn-outline-secondary">View Complete Section</a>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#farmingEquipmentModal">View Complete Section</button>
                 </div>
             </div>
         </div>
@@ -2617,6 +2617,35 @@
                 <div class="alert alert-warning">
                     <p><strong>Implementation Tip:</strong> Start with a simple rotation plan and expand as you gain experience. Document results each season to refine your approach based on your specific soil conditions and climate patterns.</p>
                 </div>
+                
+                <h5 class="mt-4">Basic Rotation Principles</h5>
+                <ul>
+                    <li><strong>Alternate nutrient demands:</strong> Follow heavy feeders (like corn) with light feeders or soil-builders (like legumes)</li>
+                    <li><strong>Vary root depths:</strong> Alternate deep-rooted crops (cotton) with shallow-rooted crops (leafy vegetables)</li>
+                    <li><strong>Include legumes:</strong> Include nitrogen-fixing crops in your rotation</li>
+                    <li><strong>Alternate plant families:</strong> Don't plant crops from the same family consecutively</li>
+                    <li><strong>Consider market demands:</strong> Balance soil-building crops with profitable cash crops</li>
+                </ul>
+
+                <h5 class="mt-4">Successful Rotation Examples in Indian Agriculture</h5>
+                <ul>
+                    <li><strong>Rice-Wheat Rotation:</strong> Common in Indo-Gangetic plains, can be improved by adding a legume as third crop</li>
+                    <li><strong>Cotton-Based Rotation:</strong> Cotton followed by chickpea or other pulse crops</li>
+                    <li><strong>Sugarcane-Based Rotation:</strong> Sugarcane (18 months) followed by legumes or vegetables</li>
+                    <li><strong>Vegetable Rotations:</strong> Following leaf crops with fruit crops then root crops</li>
+                    <li><strong>Agroforestry Rotations:</strong> Incorporating tree crops in long-term rotations</li>
+                </ul>
+
+                <h5 class="mt-4">Planning Your Crop Rotation</h5>
+                <p>Consider these factors when planning your rotation:</p>
+                <ul>
+                    <li><strong>Local climate and growing seasons</strong></li>
+                    <li><strong>Soil type and current soil health</strong></li>
+                    <li><strong>Available irrigation</strong></li>
+                    <li><strong>Market demand and prices</strong></li>
+                    <li><strong>Common pests and diseases in your area</strong></li>
+                    <li><strong>Labor and machinery constraints</strong></li>
+                </ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -2624,7 +2653,219 @@
         </div>
     </div>
 </div>
-<!-- Equipment Modal -->
+<!-- Farming Equipment Modal -->
+<div class="modal fade" id="farmingEquipmentModal" tabindex="-1" aria-labelledby="farmingEquipmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white">
+                <h5 class="modal-title" id="farmingEquipmentModalLabel">Farming Equipment Guide</h5>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Farming Equipment Guide. This comprehensive guide covers essential agricultural tools and equipment for small, medium, and large-scale farming operations, with recommendations for Indian farming conditions.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4>Essential Farm Equipment for Indian Farmers</h4>
+                <p>The right equipment can significantly improve farming efficiency and productivity. This guide covers tools and machinery suitable for different farm sizes and budgets.</p>
+                
+                <div class="alert alert-info mb-4">
+                    <p><strong>Equipment Selection Tip:</strong> Consider your farm size, soil type, cropping pattern, and budget when selecting equipment. Multi-purpose tools often provide the best value for small farms.</p>
+                </div>
+                
+                <h5>Basic Hand Tools</h5>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">Soil Preparation Tools</h6>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>Khurpi/Hand Hoe:</strong> For weeding and making seed beds</li>
+                                    <li><strong>Spade (Kassi/Kudali):</strong> For digging, lifting and moving soil</li>
+                                    <li><strong>Pickaxe (Gainti):</strong> For breaking hard soil and rocks</li>
+                                    <li><strong>Garden Rake:</strong> For leveling soil and collecting debris</li>
+                                    <li><strong>Sickle (Hansiya):</strong> For harvesting crops and cutting grass</li>
+                                </ul>
+                                <p class="small text-muted">These basic tools are essential for all farm sizes and cost ₹200-1,500 each.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">Plant Care Tools</h6>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>Pruning Shears:</strong> For trimming plants and small branches</li>
+                                    <li><strong>Watering Can/Bucket:</strong> For controlled irrigation of small areas</li>
+                                    <li><strong>Hand Sprayer (2-5L):</strong> For applying pesticides in small areas</li>
+                                    <li><strong>Seed Dibbler:</strong> For making holes at consistent depths for seeds</li>
+                                    <li><strong>Measuring Tools:</strong> For spacing plants and creating straight rows</li>
+                                </ul>
+                                <p class="small text-muted">Investment in quality hand tools pays off through durability and efficiency.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5>Equipment for Small Farms (1-5 Acres)</h5>
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0">Small-Scale Mechanization Options</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Land Preparation</h6>
+                                <ul>
+                                    <li><strong>Power Tiller/Mini Tractor:</strong> Multi-purpose equipment for plowing, harrowing, and transportation (₹60,000-1,50,000)</li>
+                                    <li><strong>Rotavator:</strong> For breaking clods and mixing soil (₹25,000-40,000)</li>
+                                    <li><strong>Cultivator:</strong> For secondary tillage and weed control (₹15,000-25,000)</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Planting & Harvesting</h6>
+                                <ul>
+                                    <li><strong>Manual Seed Drill:</strong> For precision sowing (₹3,000-8,000)</li>
+                                    <li><strong>Knapsack/Backpack Sprayer:</strong> For applying pesticides (₹1,200-3,000)</li>
+                                    <li><strong>Manual Harvest Tools:</strong> Improved sickles and reapers (₹500-2,500)</li>
+                                    <li><strong>Thresher:</strong> Small pedal or motor-operated (₹15,000-30,000)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="alert alert-success mt-3">
+                            <p class="mb-0"><strong>Government Support:</strong> Check with your local KVK (Krishi Vigyan Kendra) or Agriculture Department for subsidies on small farm equipment under various schemes.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5>Equipment for Medium Farms (5-25 Acres)</h5>
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Equipment Type</th>
+                                <th>Recommended Options</th>
+                                <th>Approximate Cost (₹)</th>
+                                <th>Key Benefits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tractor</td>
+                                <td>35-45 HP tractor with essential implements</td>
+                                <td>4,50,000-6,50,000</td>
+                                <td>Multi-purpose use, time-saving for medium acreage</td>
+                            </tr>
+                            <tr>
+                                <td>Plough</td>
+                                <td>Disc plough, MB plough</td>
+                                <td>35,000-55,000</td>
+                                <td>Deeper soil working, handles tough soil conditions</td>
+                            </tr>
+                            <tr>
+                                <td>Planter</td>
+                                <td>Seed-cum-fertilizer drill</td>
+                                <td>45,000-75,000</td>
+                                <td>Precision placement of seeds and fertilizers</td>
+                            </tr>
+                            <tr>
+                                <td>Irrigation</td>
+                                <td>Pump sets, sprinkler systems</td>
+                                <td>20,000-1,00,000</td>
+                                <td>Efficient water usage, labor saving</td>
+                            </tr>
+                            <tr>
+                                <td>Plant Protection</td>
+                                <td>Tractor-mounted sprayer</td>
+                                <td>40,000-60,000</td>
+                                <td>Quick and uniform application of chemicals</td>
+                            </tr>
+                            <tr>
+                                <td>Harvesting</td>
+                                <td>Reaper, small combine</td>
+                                <td>1,50,000-4,00,000</td>
+                                <td>Timely harvesting, reduced grain loss</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h5>Custom Hiring Centers & Shared Equipment</h5>
+                <p>For equipment that is expensive or used only seasonally, consider:</p>
+                <div class="row mb-4">
+                    <div class="col-lg-6">
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">Custom Hiring Options</h6>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Contact local Custom Hiring Centers (CHCs) established under government schemes</li>
+                                    <li>Form a farmers' group to collectively purchase and share expensive equipment</li>
+                                    <li>Hire specialized equipment like combine harvesters, laser land levelers on per-hour or per-acre basis</li>
+                                    <li>Typical rental costs: ₹500-1,500 per hour depending on the machine</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">Equipment to Consider Hiring</h6>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>Combine Harvester:</strong> For harvesting and threshing in one operation</li>
+                                    <li><strong>Laser Land Leveler:</strong> For precision land leveling to improve irrigation efficiency</li>
+                                    <li><strong>Heavy Rotavator:</strong> For difficult field preparation</li>
+                                    <li><strong>Specialized Planters:</strong> For crops planted occasionally</li>
+                                    <li><strong>Post-Harvest Processing:</strong> Cleaning, grading equipment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5>Equipment Maintenance Tips</h5>
+                <div class="alert alert-warning">
+                    <p><strong>Proper maintenance extends equipment life and reduces costly repairs:</strong></p>
+                    <ol class="mb-0">
+                        <li>Clean equipment after each use to prevent rust and debris buildup</li>
+                        <li>Regularly check and change lubricants according to manufacturer recommendations</li>
+                        <li>Inspect and replace worn parts before they cause damage to other components</li>
+                        <li>Store equipment in dry, covered areas when not in use</li>
+                        <li>Keep a maintenance log for each piece of equipment</li>
+                        <li>Train all operators on proper use to prevent mishandling damage</li>
+                    </ol>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Financial Assistance for Farm Mechanization</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Several government schemes provide subsidies for purchasing farm equipment:</p>
+                        <ul>
+                            <li><strong>Sub-Mission on Agricultural Mechanization (SMAM):</strong> Offers 40-50% subsidy on various equipment</li>
+                            <li><strong>National Mission on Sustainable Agriculture (NMSA):</strong> Supports climate-resilient technologies</li>
+                            <li><strong>State-specific schemes:</strong> Many states offer additional subsidies</li>
+                            <li><strong>NABARD loans:</strong> Special credit schemes for farm mechanization</li>
+                        </ul>
+                        <p>Contact your District Agriculture Officer or nearest KVK for application procedures and current subsidies.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
                 
                 <div class="card mb-3">
                     <div class="card-header bg-light">
