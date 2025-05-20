@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block additional_scripts %}
+<script src="{{ url_for('static', filename='js/voice_narration.js') }}"></script>
+{% endblock %}
+
 {% block additional_css %}
 <style>
     .knowledge-card {
@@ -926,9 +930,14 @@
 <div class="modal fade" id="soilHealthModal" tabindex="-1" aria-labelledby="soilHealthModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
+            <div class="modal-header bg-success text-white d-flex justify-content-between align-items-center">
                 <h5 class="modal-title" id="soilHealthModalLabel">Soil Health Guide</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Soil Health Guide. Learn about the key indicators of soil health and practices to improve it.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
             </div>
             <div class="modal-body">
                 <h4>What is Soil Health?</h4>
@@ -967,9 +976,14 @@
 <div class="modal fade" id="soilVideoModal" tabindex="-1" aria-labelledby="soilVideoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-success text-white">
+            <div class="modal-header bg-success text-white d-flex justify-content-between align-items-center">
                 <h5 class="modal-title" id="soilVideoModalLabel">Soil Testing Tutorial</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Soil Testing Tutorial. This guide walks you through the key steps for properly testing your soil to understand its composition and nutrient levels.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
             </div>
             <div class="modal-body">
                 <h4>Soil Testing Video Tutorial</h4>
@@ -1053,9 +1067,14 @@
 <div class="modal fade" id="cropSeasonalModal" tabindex="-1" aria-labelledby="cropSeasonalModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <h5 class="modal-title" id="cropSeasonalModalLabel">Seasonal Crop Planning Guide</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Seasonal Crop Planning Guide. India's agricultural calendar is divided into three growing seasons, each with specific characteristics and suitable crops. This guide will help you understand the planting and harvesting times for different crops across India.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
             </div>
             <div class="modal-body">
                 <h4>Understanding Crop Seasons in India</h4>
@@ -1151,9 +1170,14 @@
 <div class="modal fade" id="cropRotationModal" tabindex="-1" aria-labelledby="cropRotationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <h5 class="modal-title" id="cropRotationModalLabel">Crop Rotation Benefits and Techniques</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-sm btn-light play-audio me-2" data-text="Crop Rotation Benefits and Techniques. Learn about the practice of growing different types of crops in the same area across a sequence of growing seasons. This guide explains how crop rotation improves soil health, reduces pests, and increases crop yields.">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
             </div>
             <div class="modal-body">
                 <h4>Understanding Crop Rotation</h4>
