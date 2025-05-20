@@ -55,14 +55,14 @@
 {% block content %}
 <div class="knowledge-header text-center">
     <div class="container">
-        <h2 class="display-5"><i class="fas fa-graduation-cap me-3"></i>Farming Knowledge Hub</h2>
-        <p class="lead">Access comprehensive guides and resources for both beginners and experienced farmers</p>
+        <h2 class="display-5"><i class="fas fa-graduation-cap me-3"></i>{{ translate('knowledge_hub_title') }}</h2>
+        <p class="lead">{{ translate('knowledge_hub_description') }}</p>
         
         <div class="search-box mt-4">
             <div class="input-group mb-3 mx-auto" style="max-width: 600px;">
-                <input type="text" class="form-control" id="knowledgeSearch" placeholder="Search articles, guides, and resources...">
+                <input type="text" class="form-control" id="knowledgeSearch" placeholder="{{ translate('search_knowledge_placeholder') }}">
                 <button class="btn btn-success" type="button" id="searchButton">
-                    <i class="fas fa-search"></i> Search
+                    <i class="fas fa-search"></i> {{ translate('search') }}
                 </button>
             </div>
         </div>
@@ -72,7 +72,7 @@
 <div class="container">
     <!-- Knowledge Categories -->
     <section class="mb-5">
-        <h3 class="mb-4">Knowledge Categories</h3>
+        <h3 class="mb-4">{{ translate('knowledge_categories') }}</h3>
         
         <div class="row g-4">
             <!-- Soil Management -->
