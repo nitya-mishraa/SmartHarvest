@@ -123,6 +123,13 @@ TRANSLATIONS = {
         # Crop Recommendation translations
         "crop_recommendation_system": "Crop Recommendation System",
         "crop_recommendation_description": "Enter your soil parameters and climate conditions to get AI-powered crop recommendations suitable for your farm.",
+        
+        # Fertilizer Recommendation translations
+        "fertilizer_recommendation_system": "Fertilizer Recommendation System",
+        "fertilizer_recommendation_description": "Enter your soil nutrient levels and crop type to receive recommendations for the most appropriate fertilizers.",
+        "fertilizer_recommendation_info": "Different crops have varying nutrient requirements. For optimal results, enter accurate soil test data and select the specific crop you plan to grow.",
+        "crop_type_label": "Crop Type",
+        "select_crop": "Select crop",
         "soil_test_info": "For best results, use recent soil test results if available. The more accurate your input data, the better our recommendations will be.",
         "nitrogen_content_label": "Nitrogen (N) content in soil (mg/kg)",
         "phosphorus_content_label": "Phosphorus (P) content in soil (mg/kg)",

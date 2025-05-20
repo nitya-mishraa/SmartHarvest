@@ -17,47 +17,47 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header bg-primary text-white">
-                <h3 class="mb-0"><i class="fas fa-flask me-2"></i>Fertilizer Recommendation System</h3>
+                <h3 class="mb-0"><i class="fas fa-flask me-2"></i>{{ translate('fertilizer_recommendation_system') }}</h3>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p class="lead">Enter your soil nutrient levels and crop type to receive recommendations for the most appropriate fertilizers.</p>
+                        <p class="lead">{{ translate('fertilizer_recommendation_description') }}</p>
                         
                         <div class="alert alert-info" role="alert">
-                            <i class="fas fa-info-circle me-2"></i>Different crops have varying nutrient requirements. For optimal results, enter accurate soil test data and select the specific crop you plan to grow.
+                            <i class="fas fa-info-circle me-2"></i>{{ translate('fertilizer_recommendation_info') }}
                         </div>
                         
                         <form method="POST" action="{{ url_for('fertilizer_recommendation') }}" id="fertilizerRecommendationForm">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label for="nitrogen" class="form-label">Nitrogen (N) content in soil (mg/kg)</label>
-                                    <input type="number" class="form-control" id="nitrogen" name="nitrogen" required min="0" max="500" step="0.01" placeholder="e.g., 40">
+                                    <label for="nitrogen" class="form-label">{{ translate('nitrogen_content_label') }}</label>
+                                    <input type="number" class="form-control" id="nitrogen" name="nitrogen" required min="0" max="500" step="0.01" placeholder="{{ translate('nitrogen_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="phosphorus" class="form-label">Phosphorus (P) content in soil (mg/kg)</label>
-                                    <input type="number" class="form-control" id="phosphorus" name="phosphorus" required min="0" max="500" step="0.01" placeholder="e.g., 35">
+                                    <label for="phosphorus" class="form-label">{{ translate('phosphorus_content_label') }}</label>
+                                    <input type="number" class="form-control" id="phosphorus" name="phosphorus" required min="0" max="500" step="0.01" placeholder="{{ translate('phosphorus_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="potassium" class="form-label">Potassium (K) content in soil (mg/kg)</label>
-                                    <input type="number" class="form-control" id="potassium" name="potassium" required min="0" max="500" step="0.01" placeholder="e.g., 45">
+                                    <label for="potassium" class="form-label">{{ translate('potassium_content_label') }}</label>
+                                    <input type="number" class="form-control" id="potassium" name="potassium" required min="0" max="500" step="0.01" placeholder="{{ translate('potassium_placeholder') }}">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <label for="crop_type" class="form-label">Crop Type</label>
+                                    <label for="crop_type" class="form-label">{{ translate('crop_type_label') }}</label>
                                     <select class="form-select" id="crop_type" name="crop_type" required>
-                                        <option value="" selected disabled>Select crop</option>
-                                        <option value="Rice">Rice</option>
-                                        <option value="Wheat">Wheat</option>
-                                        <option value="Maize">Maize</option>
-                                        <option value="Chickpea">Chickpea</option>
-                                        <option value="Lentil">Lentil</option>
-                                        <option value="Cotton">Cotton</option>
-                                        <option value="Sugarcane">Sugarcane</option>
-                                        <option value="Tea">Tea</option>
-                                        <option value="Coffee">Coffee</option>
+                                        <option value="" selected disabled>{{ translate('select_crop') }}</option>
+                                        <option value="Rice">{{ translate('rice') }}</option>
+                                        <option value="Wheat">{{ translate('wheat') }}</option>
+                                        <option value="Maize">{{ translate('maize') }}</option>
+                                        <option value="Chickpea">{{ translate('chickpea') }}</option>
+                                        <option value="Lentil">{{ translate('lentil') }}</option>
+                                        <option value="Cotton">{{ translate('cotton') }}</option>
+                                        <option value="Sugarcane">{{ translate('sugarcane') }}</option>
+                                        <option value="Tea">{{ translate('tea') }}</option>
+                                        <option value="Coffee">{{ translate('coffee') }}</option>
                                         <option value="Potato">Potato</option>
                                         <option value="Tomato">Tomato</option>
                                         <option value="Onion">Onion</option>
