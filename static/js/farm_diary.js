@@ -72,13 +72,24 @@ function setupDynamicForm() {
     const cropField = document.getElementById('crop');
     
     if (entryTypeSelect && amountField) {
+        // Make sure amount field is visible by default
+        amountField.style.display = 'block';
+        
         entryTypeSelect.addEventListener('change', function() {
             const selectedType = this.value;
             
             // Show/hide amount field based on entry type
             if (selectedType === 'expense' || selectedType === 'income') {
+                // Make sure amount field is visible
                 amountField.style.display = 'block';
-                amountField.querySelector('input').setAttribute('required', '');
+                const amountInput = amountField.querySelector('input');
+                if (amountInput) {
+                    amountInput.setAttribute('required', '');
+                    // Clear any previous value
+                    amountInput.value = '';
+                    // Make sure it's not disabled
+                    amountInput.disabled = false;
+                }
                 
                 // Update label text
                 const label = amountField.querySelector('label');
@@ -86,8 +97,14 @@ function setupDynamicForm() {
                     label.textContent = selectedType === 'expense' ? 'Expense Amount (₹)' : 'Income Amount (₹)';
                 }
             } else {
+                // For non-financial entries, hide amount field
                 amountField.style.display = 'none';
-                amountField.querySelector('input').removeAttribute('required');
+                const amountInput = amountField.querySelector('input');
+                if (amountInput) {
+                    amountInput.removeAttribute('required');
+                    // Set to 0 for non-financial entries
+                    amountInput.value = '0';
+                }
             }
             
             // Update crop field label based on entry type
@@ -106,8 +123,13 @@ function setupDynamicForm() {
             }
         });
         
-        // Initialize form state
-        entryTypeSelect.dispatchEvent(new Event('change'));
+        // Initialize form state - make sure this is triggered
+        if (entryTypeSelect.value) {
+            entryTypeSelect.dispatchEvent(new Event('change'));
+        } else {
+            // Default state - hide amount field initially until entry type is selected
+            amountField.style.display = 'none';
+        }
     }
 }
 

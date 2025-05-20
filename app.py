@@ -252,7 +252,18 @@ def farm_diary():
             date = request.form.get('date')
             crop = request.form.get('crop')
             details = request.form.get('details')
-            amount = request.form.get('amount', type=float, default=0.0)
+            
+            # Special handling for amount field
+            amount = 0.0
+            if entry_type in ['expense', 'income']:
+                amount_str = request.form.get('amount', '')
+                if amount_str.strip():
+                    try:
+                        amount = float(amount_str)
+                    except ValueError:
+                        flash('Please enter a valid amount for expense/income entries.')
+                        entries = FarmDiary.query.filter_by(user_id=current_user.id).order_by(FarmDiary.date.desc()).all()
+                        return render_template('farm_diary.html', entries=entries)
             
             new_entry = FarmDiary(
                 user_id=current_user.id,
@@ -271,6 +282,7 @@ def farm_diary():
         except Exception as e:
             logger.error(f"Error in farm diary: {str(e)}")
             flash(f"Error: {str(e)}")
+            db.session.rollback()
     
     # Get all diary entries for the current user
     entries = FarmDiary.query.filter_by(user_id=current_user.id).order_by(FarmDiary.date.desc()).all()
