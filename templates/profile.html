@@ -77,9 +77,7 @@
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    {% set recent_entries = current_user.farm_diary_entries|sort(attribute='created_at', reverse=True)|slice(0, 3) %}
-                    {% set recent_tasks = current_user.tasks|sort(attribute='created_at', reverse=True)|slice(0, 3) %}
-                    {% set recent_crop_recs = current_user.crop_recommendations|sort(attribute='created_at', reverse=True)|slice(0, 3) %}
+                    <!-- Using entries passed from the route instead of filters to avoid division by zero error -->
                     
                     {% if recent_entries %}
                         {% for entry in recent_entries %}

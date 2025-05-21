@@ -128,7 +128,15 @@ def logout():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html')
+    # Get user's recent entries for display
+    recent_entries = FarmDiary.query.filter_by(user_id=current_user.id).order_by(FarmDiary.created_at.desc()).limit(3).all()
+    recent_tasks = TaskPlanner.query.filter_by(user_id=current_user.id).order_by(TaskPlanner.created_at.desc()).limit(3).all()
+    recent_crop_recs = CropRecommendation.query.filter_by(user_id=current_user.id).order_by(CropRecommendation.created_at.desc()).limit(3).all()
+    
+    return render_template('profile.html', 
+                         recent_entries=recent_entries or [],
+                         recent_tasks=recent_tasks or [],
+                         recent_crop_recs=recent_crop_recs or [])
 
 # Crop Recommendation System Route
 @app.route('/crop-recommendation', methods=['GET', 'POST'])
